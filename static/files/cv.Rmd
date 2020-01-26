@@ -1,0 +1,414 @@
+---
+title: "Xiatao Shen's resume"
+author: Xiaotao Shen
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_resume:
+    # set it to true for a self-contained HTML page but it'll take longer to render
+    self_contained: false
+---
+
+Aside
+================================================================================
+
+
+![Xiaotao Shen](https://www.shenxt.info/files/offical-sxt.jpg){width=80%}
+
+
+Contact Infor {#contact}
+--------------------------------------------------------------------------------
+
+- <i class="fa fa-envelope"></i> shenxt@stanford.edu
+- <i class="fa fa-home"></i> [www.shenxt.info](https://www.shenxt.info/)
+- <i class="fa fa-github"></i> [github.com/jaspershen](https://github.com/jaspershen)
+- <i class="fa fa-phone"></i> +1 571-267-9283
+- <i class="fa fa-linkedin"></i> [linkedin.com/in/shenxt/](https://www.linkedin.com/in/shenxt/)
+- <i class="fa fa-weixin"></i> [shenzutao1990](https://www.shenxt.info/files/wechat_QR.jpg)
+
+<br/>
+
+- For more information, please contact me via email.
+
+
+Skills {#skills}
+--------------------------------------------------------------------------------
+
+- **Languages:** Mandarin (Very fluent), English (Fluent).
+
+- **Programming Languages:** R, Python.
+
+- **Other Skills:** Markdown, Photoshop, Illustrator, Linux (Ubuntu and CentOS), GitHub, Shiny.
+
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+<!-- This resume was made with the R package [**pagedown**](https://github.com/rstudio/pagedown). -->
+
+Last updated on `r Sys.Date()`.
+
+Main
+================================================================================
+
+Xiatao Shen Ph.D. {#title}
+--------------------------------------------------------------------------------
+
+### A Postdoc Research Fellow at Stanford University
+
+I am now a postdoctoral research fellow at Stanford University. I am broadly interested in Metabolomics, Multi-omics, Biostatistics, Systems Biology, and Bioinformatics, and their application in healthcare.
+
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+### Chinese Academy of Sciences
+
+Ph.D. Student in Metabolomics and Bioinformatics
+
+Shanghai, China
+
+Sep. 2013 - Dec. 2018
+
+Advisor: [Dr. Zheng-Jiang Zhu](http://www.zhulab.cn/members_show.php?id=1)
+
+###  Inner Mongolia University
+
+B.S. in Biotechnology
+
+Hohhot, China
+
+Sep. 2009 - Jun. 2013
+
+Advisor: Dr. Pengxia Liu
+
+Research Experience {data-icon=laptop}
+--------------------------------------------------------------------------------
+
+### Postdoctoral Research Fellow
+
+Stanford University School of Medicine
+
+Palo Alto, USA
+
+Apr. 2019.4 - Present
+
+Advisor: [Dr. Michael Snyder](http://snyderlab.stanford.edu/Snyder.html)
+
+
+Research interset {data-icon=suitcase}
+--------------------------------------------------------------------------------
+
+### Metabolomics Data Processing Methods and Software Development.
+
+N/A
+
+N/A
+
+N/A
+
+### Multi-omics Data Analysis for Biomarker Discovery for Diseases.
+
+N/A
+
+N/A
+
+N/A
+
+
+HONORS AND AWARDS {data-icon=award}
+--------------------------------------------------------------------------------
+
+### Student Travel Award for Oral Presentation
+
+The International Metabolomics Society
+
+Seattle, USA
+
+Jun. 2018
+
+### International Conference Travel Award
+
+The Metabolites Journal
+
+Seattle, USA
+
+Jun. 2018
+
+### China National Scholarship
+
+Ministry of Education of the People’s Republic of China
+
+Shanghai, China
+
+Dec. 2017
+
+
+### Award for Outstanding Youth Report
+
+The 3<sup>th</sup> China Mass Spectrometry Analysis Conference
+
+Xiamen, China
+
+Dec. 2017
+
+
+### Merit Student
+
+University of Chinese Academy of Sciences
+
+Shanghai, China
+
+Jun. 2016
+
+### Award for Outstanding Youth Report
+
+The 34<sup>th</sup> China Mass Spectrometry Society Conference
+
+Xining, China
+
+Sep. 2016
+
+
+### Inner Mongolia Outstanding Graduate
+
+Inner Mongolia Autonomous Region
+
+Hohhot, China
+
+Jun. 2013
+
+### National Encouragement Scholarship
+
+Inner Mongolia University
+
+Hohhot, China
+
+Jun. 2011
+
+
+<!-- ### Bioinformatican -->
+
+<!-- My Health Gene Technology Co., Ltd. -->
+
+<!-- Beijing, China -->
+
+<!-- 2015 - 2016 -->
+
+<!-- - Investigated how cancer cells spread to other parts of the body at the single cell level. -->
+
+<!-- ### Visiting Scientist -->
+
+<!-- University of Alabama at Birmingham -->
+
+<!-- AL, USA -->
+
+<!-- 2016 - 2018 -->
+
+<!-- - Investigated the role of mitochondria in development of cancer. -->
+<!-- - Investigated the evolution of genome architecture and its role in important evolutionary events. -->
+<!-- - Detected thrombotic thrombocytopenic purpura related mutations in mutiple patients' blood genome. -->
+  
+
+<!-- Professional Experience {data-icon=suitcase} -->
+<!-- -------------------------------------------------------------------------------- -->
+
+<!-- ### Data Scientist, intern -->
+
+<!-- SupStat Inc. -->
+
+<!-- Beijing, China -->
+
+<!-- 2014 -->
+
+<!-- ::: concise -->
+<!-- - Taught R language to beginners.  -->
+<!-- - Wrote Shiny app demos. -->
+<!-- - Converted statistical tutorials from SPSS to R language. -->
+<!-- ::: -->
+
+<!-- ### Bioinformatician -->
+
+<!-- My Health Gene Technology Co., Ltd. -->
+
+<!-- Beijing, China -->
+
+<!-- 2015 - 2016 -->
+
+<!-- ::: concise -->
+<!-- - Analyzed whole-exome sequencing data.  -->
+<!-- - Wrote analysis pipelines of ChIP-seq, single cell DNA-seq and single cell RNA-seq. -->
+<!-- - Studied tumor metastasis and wrote research reports.  -->
+<!-- - Also did case studies to identify the genetic defect causing rare disease. -->
+<!-- ::: -->
+
+
+<!-- Teaching Experience {data-icon=chalkboard-teacher} -->
+<!-- -------------------------------------------------------------------------------- -->
+
+<!-- ### Introduction to R Language for Beginners. -->
+
+<!-- Instructor of R and Data Mining Training Courses at SupStat Inc. -->
+
+<!-- Beijing, China -->
+
+<!-- 2014 -->
+
+<!-- ### Computational Biology and Bioinformatics. -->
+
+<!-- Teaching assistant of GBS CB2-201 courses at UAB -->
+
+<!-- AL, USA -->
+
+<!-- 2016 - 2017 -->
+
+
+Publications {data-icon=file}
+--------------------------------------------------------------------------------
+
+### Development of A Correlative Strategy to Discover Colorectal Tumor Tissue Derived Metabolite Biomarkers in Plasma Using Untargeted Metabolomics
+
+Analytical Chemistry, 2019, 91, 3, 2401-2408.
+
+N/A
+
+2019
+
+Z. Wang, B. Cui, F. Zhang, Y. Yang, **X. Shen**, Z. Li, W. Zhao, Y. Zhang, K. Deng, Z. Rong, K.
+Yang, X. Yu, K. Li, P. Han, and Z.-J. Zhu.
+
+
+### Large-scale Metabolite Identification for Untargeted Metabolomics Using Metabolic Reaction Network
+
+Nature Communications, 2019, 10:1516.
+
+N/A
+
+2019
+
+**X. Shen**, R. Wang, X. Xiong, Y. Yin, Y. Cai, J. Ma, N. Liu and Z.-J. Zhu.
+
+### MetFlow: An interactive and integrated workflow for metabolomics data cleaning and differential metabolite discovery
+
+Bioinformatics, Volume 35, Issue 16, 15 August 2019, Pages 2870–2872.
+
+N/A
+
+2019
+
+**X. Shen** and Z.-J. Zhu.
+
+### LipidIMMS Analyzer: Integrating Multi-dimensional Information to Support Lipid Identification in Ion Mobility–Mass Spectrometry based Lipidomics
+
+Bioinformatics, Volume 35, Issue 4, 15 February 2019, Pages 698–700.
+
+N/A
+
+2018
+
+Z. Zhou, **X. Shen**, X. Chen, J. Tu, X. Xiong, and Z.-J. Zhu.
+
+
+### Assessment of The Response to Neoadjuvant Chemo-Radiation in Rectal Cancer Patients based on A Metabolomics Approach
+
+Radiotherapy and Oncology, 2018, 128, 548-556.
+
+N/A
+
+2018
+
+H. Jia, X. **Shen (Co-first author)**, Y. Guan, M. Xu, M. Mo, J. Zhu and Z.-J. Zhu.
+
+### LipidCCS: Prediction of Collision CrossSection Values for Lipids with High Precision to Support Ion Mobility-Mass Spectrometry based Lipidomics
+
+Analytical Chemistry, 2017, 89, 9559–9566.
+
+N/A
+
+2018
+
+Z. Zhou, J. Tu, X. Xiong, **X. Shen**, and Z.-J. Zhu.
+
+
+### Large-Scale Prediction of Collision Cross-Section Values for Metabolites in Ion Mobility - Mass Spectrometry
+
+Analytical Chemistry, 2016, 88, 11084-11091.
+
+N/A
+
+2016
+
+Z. Zhou, **X. Shen**, J. Tu, and Z.-J. Zhu.
+
+### Serum Metabolomics for Early Diagnosis of Esophageal Squamous Cell Carcinoma by UHPLC-QTOF/MS
+
+Metabolomics, 2016, 12: 116.
+
+N/A
+
+2016
+
+J. Wang, T. Zhang, **X. Shen (Co-first author)**, J. Liu, D. Zhao, Y. Sun, L. Wang, Y. Liu, X. Gong, Y. Liu, Z.-J. Zhu, F. Xue.
+
+### Normalization and Integration of Large-Scale Metabolomics Data Using Support Vector Regression
+
+Metabolomics, 2016, 12: 89.
+
+N/A
+
+2016
+
+**X. Shen**, X. Gong, Y. Cai, Y. Guo, J. Tu, H. Li, T. Zhang, J. Wang, F. Xue, and Z.-J. Zhu.                                                                                                                                                        
+<br/>
+
+<br/>
+
+ORAL PRESENTATIONS {data-icon=tv}
+--------------------------------------------------------------------------------
+
+### Metabolic Reaction Network-based Recursive Metabolite Identification for Untargeted Metabolomics
+
+The 14<sup>th</sup> International Conference of the Metabolomics Society
+
+Seattle, USA
+
+Jun. 2018
+
+
+### Assessment of the Response to Neoadjuvant Chemo-Radiation in Rectal Cancer Patients based on a Metabolomics Approach. 
+
+The 3<sup>th</sup> China Mass Spectrometry Analysis Conference
+
+Xiamen, China
+
+Dec. 2017
+
+
+### Normalization and Integration of Large-Scale Mass Spectrometry-based Metabolomics Data Using Support Vector Regression
+
+The 34<sup>th</sup> China Mass Spectrometry Society Conference
+
+Xining, Qinghai
+
+Sep. 2016
+
+### Normalization and Integration of Large-Scale Mass Spectrometry-based Metabolomics Data Using Support Vector Regression
+
+The 64<sup>th</sup> American Society for Mass Spectrometry Conference
+
+San Antonio, USA
+
+Jun. 2016
+
+POSTERS PRESENTATION {data-icon=image}
+--------------------------------------------------------------------------------
+
+### Metabolic Reaction Network based Metabolite Annotation in Untargeted Metabolomics
+
+The 13<sup>th</sup> International Conference of the Metabolomics Society
+
+Brisbane, Austria
+
+Jun. 2017
+
+
+
