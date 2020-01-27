@@ -1,0 +1,437 @@
+---
+title: 如何撰写新博客？
+author: Fiona
+date: '2020-01-26'
+slug: ''
+categories:
+  - R
+tags:
+  - Blog
+image:
+  caption: ''
+  focal_point: ''
+output:
+  blogdown::html_page:
+    toc: true
+    toc_depth: 1
+    number_sections: TRUE
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#创建新博客文件"><span class="toc-section-number">1</span> 创建新博客文件</a></li>
+<li><a href="#如何运用markdown-latex和shortcodes撰写博客内容"><span class="toc-section-number">2</span> 如何运用Markdown, LaTeX和Shortcodes撰写博客内容？</a></li>
+<li><a href="#如何在post中插入视频"><span class="toc-section-number">3</span> 如何在post中插入视频?</a></li>
+</ul>
+</div>
+
+<div id="创建新博客文件" class="section level1">
+<h1><span class="header-section-number">1</span> 创建新博客文件</h1>
+<div id="新建文档放哪" class="section level2">
+<h2><span class="header-section-number">1.1</span> 新建文档放哪？</h2>
+<p>新建博客一般新开一个子文件夹，把博客文档以及相关图片、pdf文件等资料都放在一起。</p>
+<ul>
+<li>如果撰写英文博客，文档放在文件夹<code>content/en/post/</code><br />
+</li>
+<li>如果撰写中文博客，文档放在文件夹<code>content/zh/post/</code></li>
+</ul>
+</div>
+<div id="新博客有哪些文件类型" class="section level2">
+<h2><span class="header-section-number">1.2</span> 新博客有哪些文件类型？</h2>
+<p>博客文件可保存为三种类型：</p>
+<ul>
+<li><code>.md</code>：一般的<code>markdown</code>文件，不能运行R程序；<br />
+</li>
+<li><code>.Rmd</code>：<code>R Markdown</code>文件，可以跑R程序，直接输出代码和结果。缺点是需要更长运行时间，会产生<code>html</code>网页文件；<br />
+</li>
+<li><code>.Rmarkdown</code>：也是<code>R Markdown</code>文件，但运行R的是Hugo而不是Pandoc，因此功能有一定限制，比如不能引用参考文献，数学公式要安装软件包xaringan（简单好用的网页幻灯片）才行。</li>
+</ul>
+<table>
+<caption><span id="tab:md-diff">Table 1.1: </span> Differences among the three document formats.</caption>
+<thead>
+<tr class="header">
+<th align="left">Feature</th>
+<th align="left">.Rmd</th>
+<th align="left">.Rmarkdown</th>
+<th align="left">.md</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Run R code</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+</tr>
+<tr class="even">
+<td align="left">Bibliography</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+</tr>
+<tr class="odd">
+<td align="left">Task list</td>
+<td align="left">maybe</td>
+<td align="left">yes</td>
+<td align="left">yes</td>
+</tr>
+<tr class="even">
+<td align="left">MathJax</td>
+<td align="left">yes</td>
+<td align="left">maybe</td>
+<td align="left">maybe</td>
+</tr>
+<tr class="odd">
+<td align="left">HTML widgets</td>
+<td align="left">yes</td>
+<td align="left">no</td>
+<td align="left">no</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="博客文档的前置部分" class="section level2">
+<h2><span class="header-section-number">1.3</span> 博客文档的前置部分</h2>
+<p>对于<code>.Rmd</code>文档，可参考本博客：</p>
+<pre><code>---
+title: 如何撰写新博客？
+author: Fiona
+date: &#39;2020-01-26&#39;
+slug: blogdown
+categories:
+  - R
+tags:
+  - Blog
+image:
+  caption: &#39;&#39;
+  focal_point: &#39;&#39;
+output:
+  blogdown::html_page:
+    toc: true  #显示目录
+    toc_depth: 2 #目录层次 
+    number_sections: true  #章节编号
+---</code></pre>
+<p>对于<code>.md</code>文档，可参考：</p>
+<pre><code>+++
+date = &quot;2016-04-20T10:00:00&quot;
+draft = false
+tags = []
+title = &quot;Writing content with Markdown, LaTeX, and Shortcodes&quot;
+math = true
++++</code></pre>
+</div>
+</div>
+<div id="如何运用markdown-latex和shortcodes撰写博客内容" class="section level1">
+<h1><span class="header-section-number">2</span> 如何运用Markdown, LaTeX和Shortcodes撰写博客内容？</h1>
+<p>本网站是用blogdown和HUGO建立的，本节内容基于academic主题。</p>
+<p>Content can be written using <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown</a>, <a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics">LaTeX math</a>, and <a href="http://gohugo.io/extras/shortcodes/">Hugo Shortcodes</a>. Additionally, HTML may be used for advanced formatting. This article gives an overview of the most common formatting options.</p>
+<div id="sub-headings" class="section level2">
+<h2><span class="header-section-number">2.1</span> Sub-headings</h2>
+<pre><code>## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6</code></pre>
+</div>
+<div id="emphasis" class="section level2">
+<h2><span class="header-section-number">2.2</span> Emphasis</h2>
+<pre><code>Italics with *asterisks* or _underscores_.
+
+Bold with **asterisks** or __underscores__.
+
+Combined emphasis with **asterisks and _underscores_**.
+
+Strikethrough with ~~two tildes~~.</code></pre>
+</div>
+<div id="ordered-lists" class="section level2">
+<h2><span class="header-section-number">2.3</span> Ordered lists</h2>
+<pre><code>1. First item
+2. Another item</code></pre>
+</div>
+<div id="unordered-lists" class="section level2">
+<h2><span class="header-section-number">2.4</span> Unordered lists</h2>
+<pre><code>* First item
+* Another item</code></pre>
+</div>
+<div id="images" class="section level2">
+<h2><span class="header-section-number">2.5</span> Images</h2>
+<p>Images may be added to a page by placing them in your <code>static/img/</code> folder and referencing them using one of the following two notations:</p>
+<p>A general image:</p>
+<pre><code>![alternative text for search engines](/img/screenshot.png)</code></pre>
+<p>A numbered figure with caption:</p>
+<pre><code>{{&lt;/* figure src=&quot;/img/screenshot.png&quot; title=&quot;Figure Caption&quot; */&gt;}}</code></pre>
+</div>
+<div id="links" class="section level2">
+<h2><span class="header-section-number">2.6</span> Links</h2>
+<pre><code>[I&#39;m a link](https://www.google.com)
+[A post]({{&lt;/* ref &quot;post/hi.md&quot; */&gt;}})
+[A publication]({{&lt;/* ref &quot;publication/hi.md&quot; */&gt;}})
+[A project]({{&lt;/* ref &quot;project/hi.md&quot; */&gt;}})
+[Another section]({{&lt;/* relref &quot;hi.md#who&quot; */&gt;}})</code></pre>
+</div>
+<div id="emojis" class="section level2">
+<h2><span class="header-section-number">2.7</span> Emojis</h2>
+<p>See the <a href="http://www.webpagefx.com/tools/emoji-cheat-sheet/">Emoji cheat sheet</a> for available emoticons. The following serves as an example, but you should remove the spaces between each emoji name and pair of semicolons:</p>
+<pre><code>I : heart : Academic : smile :</code></pre>
+<p>I :heart: Academic :smile:</p>
+</div>
+<div id="blockquote" class="section level2">
+<h2><span class="header-section-number">2.8</span> Blockquote</h2>
+<pre><code>&gt; This is a blockquote.</code></pre>
+<blockquote>
+<p>This is a blockquote.</p>
+</blockquote>
+</div>
+<div id="footnotes" class="section level2">
+<h2><span class="header-section-number">2.9</span> Footnotes</h2>
+<pre><code>I have more [^1] to say.
+
+[^1]: Footnote example.</code></pre>
+<p>I have more [^1] to say.
+[^1]: Footnote example.</p>
+</div>
+<div id="code-highlighting" class="section level2">
+<h2><span class="header-section-number">2.10</span> Code highlighting</h2>
+<p>Pass the <em>language</em> of the code, such as <code>python</code>, as a parameter after three backticks:</p>
+<pre><code>```python
+# Example of code highlighting
+input_string_var = input(&quot;Enter some data: &quot;)
+print(&quot;You entered: {}&quot;.format(input_string_var))
+```</code></pre>
+<p>Result:</p>
+<pre class="python"><code># Example of code highlighting
+input_string_var = input(&quot;Enter some data: &quot;)
+print(&quot;You entered: {}&quot;.format(input_string_var))</code></pre>
+<div id="highlighting-options" class="section level3">
+<h3><span class="header-section-number">2.10.1</span> Highlighting options</h3>
+<p>The Academic theme uses <a href="https://highlightjs.org">highlight.js</a> for source code highlighting, and highlighting is enabled by default for all pages. However, several configuration options are supported that allow finer-grained control over highlight.js.</p>
+<p>The following table lists the supported options for configuring highlight.js, along with their expected type and a short description. A “yes” in the <strong>config.toml</strong> column means the value can be set globally in <code>config.toml</code>, and a “yes” in the <strong>preamble</strong> column means that the value can be set locally in a particular page’s preamble.</p>
+<table>
+<thead>
+<tr class="header">
+<th>option</th>
+<th>type</th>
+<th>description</th>
+<th>config.toml</th>
+<th>preamble</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>highlight</code></td>
+<td>boolean</td>
+<td>enable/disable highlighting</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<td><code>highlight_languages</code></td>
+<td>slice</td>
+<td>choose additional languages</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<td><code>highlight_style</code></td>
+<td>string</td>
+<td>choose a highlighting style</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr class="even">
+<td><code>highlight_version</code></td>
+<td>string</td>
+<td>choose the highlight.js version</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="option-highlight" class="section level3">
+<h3><span class="header-section-number">2.10.2</span> Option <code>highlight</code></h3>
+<p>The <code>highlight</code> option allows enabling or disabling the inclusion of highlight.js, either globally or for a particular page. If the option is unset, it has the same effect as if you had specified <code>highlight = true</code>. That is, the highlight.js javascript and css files will be included in every page. If you’d like to only include highlight.js files on pages that actually require source code highlighting, you can set <code>highlight = false</code> in <code>config.toml</code>, and then override it by setting <code>highlight = true</code> in the preamble of any pages that require source code highlighting. Conversely, you could enable highlighting globally, and disable it locally for pages that do not require it. Here is a table that shows whether highlighting will be enabled for a page, based on the values of <code>highlight</code> set in <code>config.toml</code> and/or the page’s preamble.</p>
+<table>
+<thead>
+<tr class="header">
+<th>config.toml</th>
+<th>page preamble</th>
+<th>highlighting enabled for page?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>unset or true</td>
+<td>unset or true</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<td>unset or true</td>
+<td>false</td>
+<td>no</td>
+</tr>
+<tr class="odd">
+<td>false</td>
+<td>unset or false</td>
+<td>no</td>
+</tr>
+<tr class="even">
+<td>false</td>
+<td>true</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="option-highlight_languages" class="section level3">
+<h3><span class="header-section-number">2.10.3</span> Option <code>highlight_languages</code></h3>
+<p>The <code>highlight_languages</code> option allows you to specify additional languages that are supported by highlight.js, but are not considered “common” and therefore are not supported by default. For example, if you want source code highlighting for Go and clojure in all pages, set <code>highlight_languages = ["go", "clojure"]</code> in <code>config.toml</code>. If, on the other hand, you want to enable a language only for a specific page, you can set <code>highlight_languages</code> in that page’s preamble.</p>
+<p>The <code>highlight_languages</code> options specified in <code>config.toml</code> and in a page’s preamble are additive. That is, if <code>config.toml</code> contains, <code>highlight_languages = ["go"]</code> and the page’s preamble contains <code>highlight_languages = ["ocaml"]</code>, then javascript files for <em>both</em> go and ocaml will be included for that page.</p>
+<p>If the <code>highlight_languages</code> option is set, then the corresponding javascript files will be served from the <a href="https://cdnjs.com/libraries/highlight.js/">cdnjs server</a>. To see a list of available languages, visit the <a href="https://cdnjs.com/libraries/highlight.js/">cdnjs page</a> and search for links with the word “languages”.</p>
+</div>
+<div id="option-highlight_style" class="section level3">
+<h3><span class="header-section-number">2.10.4</span> Option <code>highlight_style</code></h3>
+<p>The <code>highlight_style</code> option allows you to select an alternate css style for highlighted code. For example, if you wanted to use the solarized-dark style, you could set <code>highlight_style = "solarized-dark"</code> in <code>config.toml</code>.</p>
+<p>If the <code>highlight_style</code> option is unset, the default is to use the file <code>/css/highlight.min.css</code>, either the one provided by the Academic theme, or else the one in your local <code>static</code> directory. The <code>/css/highlight.min.css</code> file provided by Academic is equivalent to the <code>github</code> style from highlight.js.</p>
+<p>If the <code>highlight_style</code> option <em>is</em> set, then <code>/css/highlight.min.css</code> is ignored, and the corresponding css file will be served from the <a href="https://cdnjs.com/libraries/highlight.js/">cdnjs server</a>. To see a list of available styles, visit the <a href="https://cdnjs.com/libraries/highlight.js/">cdnjs page</a> and search for links with the word “styles”.</p>
+<p>See the <a href="https://highlightjs.org/static/demo/">highlight.js demo page</a> for examples of available styles.</p>
+<p>{{% alert note %}}
+Not all styles listed on the <a href="https://highlightjs.org/static/demo/">highlight.js demo page</a> are available from the <a href="https://cdnjs.com/libraries/highlight.js/">cdnjs server</a>. If you want to use a style that is not served by cdnjs, just leave <code>highlight_style</code> unset, and place the corresponding css file in <code>/static/css/highlight.min.css</code>.
+{{% /alert %}}</p>
+<p>{{% alert note %}}
+If you don’t want to change the default style that ships with Academic but you do want the style file served from the <a href="https://cdnjs.com/libraries/highlight.js/">cdnjs server</a>, set <code>highlight_style = "github"</code> in <code>config.toml</code>.
+{{% /alert %}}</p>
+<p>The <code>highlight_style</code> option is only recognized when set in <code>config.toml</code>. Setting <code>highlight_style</code> in your page’s preamble has no effect.</p>
+</div>
+<div id="option-highlight_version" class="section level3">
+<h3><span class="header-section-number">2.10.5</span> Option <code>highlight_version</code></h3>
+<p>The <code>highlight_version</code> option, as the name implies, allows you to select the version of highlight.js you want to use. The default value is “9.9.0”. The <code>highlight_version</code> option is only recognized when set in <code>config.toml</code>. Setting <code>highlight_version</code> in your page’s preamble has no effect.</p>
+</div>
+</div>
+<div id="twitter-tweet" class="section level2">
+<h2><span class="header-section-number">2.11</span> Twitter tweet</h2>
+<p>To include a single tweet, pass the tweet’s ID from the tweet’s URL as parameter to the shortcode:</p>
+<pre><code>{{&lt;/* tweet 666616452582129664 */&gt;}}</code></pre>
+</div>
+<div id="github-gist" class="section level2">
+<h2><span class="header-section-number">2.12</span> GitHub gist</h2>
+<pre><code>{{&lt;/* gist USERNAME GIST-ID  */&gt;}}</code></pre>
+</div>
+<div id="speaker-deck" class="section level2">
+<h2><span class="header-section-number">2.13</span> Speaker Deck</h2>
+<pre><code>{{&lt;/* speakerdeck 4e8126e72d853c0060001f97 */&gt;}}</code></pre>
+</div>
+<div id="rm-latex-math" class="section level2">
+<h2><span class="header-section-number">2.14</span> <span class="math inline">\(\rm \LaTeX\)</span> math</h2>
+<pre class="tex"><code>$$\left [ – \frac{\hbar^2}{2 m} \frac{\partial^2}{\partial x^2} + V \right ] \Psi = i \hbar \frac{\partial}{\partial t} \Psi$$</code></pre>
+<p><span class="math display">\[\left [ – \frac{\hbar^2}{2 m} \frac{\partial^2}{\partial x^2} + V \right ] \Psi = i \hbar \frac{\partial}{\partial t} \Psi\]</span></p>
+<p>Alternatively, inline math can be written by wrapping the formula with only a single <code>$</code>:</p>
+<pre><code>This is inline: $\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon$</code></pre>
+<p>This is inline: <span class="math inline">\(\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon\)</span></p>
+</div>
+<div id="table" class="section level2">
+<h2><span class="header-section-number">2.15</span> Table</h2>
+<p>Code:</p>
+<pre class="markdown"><code>| Command           | Description                    |
+| ------------------| ------------------------------ |
+| `hugo`            | Build your website.            |
+| `hugo serve -w`   | View your website.             |</code></pre>
+<p>Result:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>hugo</code></td>
+<td>Build your website.</td>
+</tr>
+<tr class="even">
+<td><code>hugo serve -w</code></td>
+<td>View your website.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="alerts" class="section level2">
+<h2><span class="header-section-number">2.16</span> Alerts</h2>
+<p>Alerts are a useful feature that add side content such as tips, notes, or warnings to your articles. They are especially handy when writing educational tutorial-style articles. Use the corresponding shortcodes to enable alerts inside your content:</p>
+<pre><code>{{%/* alert note */%}}
+Here&#39;s a tip or note...
+{{%/* /alert */%}}</code></pre>
+<p>This will display the following <em>note</em> block:</p>
+<p>{{% alert note %}}
+Here’s a tip or note…
+{{% /alert %}}</p>
+<pre><code>{{%/* alert warning */%}}
+Here&#39;s some important information...
+{{%/* /alert */%}}</code></pre>
+<p>This will display the following <em>warning</em> block:</p>
+<p>{{% alert warning %}}
+Here’s some important information…
+{{% /alert %}}</p>
+</div>
+</div>
+<div id="如何在post中插入视频" class="section level1">
+<h1><span class="header-section-number">3</span> 如何在post中插入视频?</h1>
+<div id="如何插入b站视频" class="section level2">
+<h2><span class="header-section-number">3.1</span> 如何插入B站视频?</h2>
+<p>来源于下面帖子：<a href="https://www.shenxt.info/zh/post/blogdown/" class="uri">https://www.shenxt.info/zh/post/blogdown/</a>.</p>
+<p>（1）点开想要插入的视频,点击分享.然后点击<code>嵌入代码</code>,复制代码,插入到markdown文件中即可.</p>
+<p><img src="bilibili.png" /></p>
+<p>（2）调整视频显示大小。直接嵌入的视频长宽不一定合适,需要手动调整.</p>
+<p>首先设置宽度为100%，并设置一个id （如下设置ID为<code>test</code>）：</p>
+<pre><code>&lt;iframe id=&quot;test&quot; src=&quot;//player.bilibili.com/player.html?aid=23877090&amp;cid=39940519&amp;page=1&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot; width=100%&gt; &lt;/iframe&gt;</code></pre>
+<p>然后在markdown中插入如下JS代码:</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+document.getElementById(&quot;test&quot;).style.height=document.getElementById(&quot;test&quot;).scrollWidth*0.76+&quot;px&quot;;
+&lt;/script&gt;</code></pre>
+<p>结果如下：</p>
+<iframe id="test" src="//player.bilibili.com/player.html?aid=23877090&amp;cid=39940519&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="100%">
+</iframe>
+<script type="text/javascript">
+document.getElementById("test").style.height=document.getElementById("test").scrollWidth*0.76+"px";
+</script>
+</div>
+<div id="如何在.md文件中插入视频" class="section level2">
+<h2><span class="header-section-number">3.2</span> 如何在<code>.md</code>文件中插入视频？</h2>
+<div id="a-video-from-your-staticimg-media-library" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> A video from your <code>static/img/</code> media library:</h3>
+<pre><code>{{&lt; video library=&quot;1&quot; src=&quot;my_video.mp4&quot; controls=&quot;yes&quot; &gt;}}</code></pre>
+<p>其中<code>controls="yes"</code>表示网页上可进行视频播放控制（否则打开网页就直接播放）。</p>
+</div>
+<div id="a-video-within-a-pages-folder-e.g.-contentposthello" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> A video within a page’s folder (e.g. content/post/hello/):</h3>
+<pre><code>{{&lt; video src=&quot;my_video.mp4&quot; controls=&quot;yes&quot; &gt;}}
+</code></pre>
+</div>
+<div id="youtube" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Youtube:</h3>
+<pre><code>{{&lt; youtube w7Ft2ymGmfc &gt;}}</code></pre>
+</div>
+<div id="vimeo" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> Vimeo:</h3>
+<pre><code>{{&lt; vimeo 146022717 &gt;}}</code></pre>
+</div>
+</div>
+<div id="如何在.rmd文件中插入视频" class="section level2">
+<h2><span class="header-section-number">3.3</span> 如何在<code>.Rmd</code>文件中插入视频？</h2>
+<p>使用<code>shortcode()</code>函数.</p>
+<div id="本地视频" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> 本地视频</h3>
+<p>将视频放入在与post相同的文件夹中，然后插入下面语句(注意是要放在r代码框中):</p>
+<pre class="r"><code>blogdown::shortcode(&quot;video&quot;, src = &quot;ren_stat.mp4&quot;, controls=&quot;yes&quot;)</code></pre>
+{{% video src="ren_stat.mp4" controls="yes" %}}
+</div>
+<div id="youtube视频" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Youtube视频</h3>
+<p>使用下面语句可以插入视频.第二个是youtube视频ID.</p>
+<pre class="r"><code>blogdown::shortcode(&quot;youtube&quot;, &quot;p4liifrbK8w&quot;)</code></pre>
+{{% youtube "p4liifrbK8w" %}}
+</div>
+</div>
+</div>
