@@ -118,15 +118,20 @@ Content can be written using [Markdown](https://github.com/adam-p/markdown-here/
 
 ## Images
 
-Images may be added to a page by placing them in your `static/img/` folder and referencing them using one of the following two notations:
+Images may be added to a page by placing them in your post folder and referencing them using one of the following two notations:
 
 A general image:
 
-    ![alternative text for search engines](/img/screenshot.png)
+    ![](./music.png)
 
-A numbered figure with caption:
+![Beutiful music](./music.png)
 
-    {{</* figure src="/img/screenshot.png" title="Figure Caption" */>}}
+
+A unified approach by `knitr`:
+
+```{r out.width='60%', fig.cap='插入本地图形(带编号和标题)'}
+knitr::include_graphics('music.png')
+```
 
 ## Links
 

@@ -156,11 +156,21 @@ Strikethrough with ~~two tildes~~.</code></pre>
 </div>
 <div id="images" class="section level2">
 <h2><span class="header-section-number">2.5</span> Images</h2>
-<p>Images may be added to a page by placing them in your <code>static/img/</code> folder and referencing them using one of the following two notations:</p>
+<p>Images may be added to a page by placing them in your post folder and referencing them using one of the following two notations:</p>
 <p>A general image:</p>
-<pre><code>![alternative text for search engines](/img/screenshot.png)</code></pre>
-<p>A numbered figure with caption:</p>
-<pre><code>{{&lt;/* figure src=&quot;/img/screenshot.png&quot; title=&quot;Figure Caption&quot; */&gt;}}</code></pre>
+<pre><code>![](./music.png)</code></pre>
+<div class="figure">
+<img src="music.png" alt="Beutiful music" />
+<p class="caption">Beutiful music</p>
+</div>
+<p>A unified approach by <code>knitr</code>:</p>
+<pre class="r"><code>knitr::include_graphics(&#39;music.png&#39;)</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-1"></span>
+<img src="music.png" alt="插入本地图形(带编号和标题)" width="60%" />
+<p class="caption">
+Figure 2.1: 插入本地图形(带编号和标题)
+</p>
+</div>
 </div>
 <div id="links" class="section level2">
 <h2><span class="header-section-number">2.6</span> Links</h2>
