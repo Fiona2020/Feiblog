@@ -15,5 +15,5 @@ tags: []
 title: A Video Talk About The Global Challenge of Public Health
 ---
 
-{{< video src="McDonnell.mp4" controls="yes" >}}
+{{< video src="wust.mp4" controls="yes" >}}
 
