@@ -61,4 +61,9 @@ title: 修改和维护Blogdown个人网站
 在本地主目录空白处，右键，选择`Git GUI Here`，按照下图的四个步骤操作，就可把所有变动的项目推送到github远程仓库。
 ![](./deploy.png)
 
+## 参考
 
+- Blogdown: https://bookdown.org/yihui/blogdown/  
+- Academic: https://sourcethemes.com/academic/docs/  
+- https://alison.rbind.io/slides/blogdown-workshop-slides.html#1  
+- https://www.shenxt.info/zh/post/blogdown/

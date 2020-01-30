@@ -124,7 +124,7 @@ A general image:
 
     ![](./music.png)
 
-![Beutiful music](./music.png)
+![Beautiful music](./music.png)
 
 
 A unified approach by `knitr`:
@@ -390,3 +390,11 @@ blogdown::shortcode("video", src = "ren_stat.mp4", controls="yes")
 ```{r, eval=TRUE}
 blogdown::shortcode("youtube", "p4liifrbK8w")
 ```
+
+# 参考
+
+- [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)  
+- [Writing technical content in Academic](https://fionawang.netlify.com/post/writing-technical-content/)  
+- [blogdown创建博客总结](https://www.shenxt.info/zh/post/blogdown/)  
+- [Writing content with Markdown, LaTeX, and Shortcodes](https://sourcethemes.com/academic/docs/writing-markdown-latex/)
+

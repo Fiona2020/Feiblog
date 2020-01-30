@@ -19,7 +19,7 @@ name: Fei Wang
 organizations:
 - name: Tsinghua University
   url: "https://www.tsinghua.edu.cn/publish/thu2018/index.html"
-role: Student， Senior
+role: Student，Senior
 social:
 - icon: envelope
   icon_pack: fas
