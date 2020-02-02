@@ -1,0 +1,231 @@
+\ProvidesPackage{hayesmacros}[2018/10/18 macros for personal use]
+\RequirePackage{amsmath, amsfonts, amsthm, mathtools, graphicx}
+
+% GENERAL environments
+
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{cor}{Corollary}
+\newtheorem*{lemma}{Lemma}
+
+\newtheorem*{prop}{Proposition}
+\newtheorem*{claim}{Claim}
+\newtheorem*{example}{Example}
+
+\theoremstyle{definition}
+\newtheorem*{defin}{Definition}
+\newtheorem*{notation}{Notation}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+% PROBABILITY and STATISTICS SHORTCUTS
+
+% TODO: common distributions, distributional params
+\newcommand \E [1] {\mathbb{E} \paren*{#1}}
+\newcommand \V [1] {\mathbf{Var} \paren*{#1}}
+\newcommand \Cov [2] {\mathbf{Cov} \paren*{#1, #2}}
+\newcommand \Cor [2] {\mathbf{Cor} \paren*{#1, #2}}
+
+\newcommand \N [2] {\mathrm{N} \paren*{#1, #2}}
+
+\newcommand \h [1] {\mathcal{H}_{#1}}
+\newcommand \BF {\mathrm{BF}}
+
+\newcommand \PoissonD [1] {\mathrm{Poisson} \paren*{#1}}
+\newcommand \UniformD [2] {\mathrm{Uniform} \paren*{#1, #2}}
+\newcommand \BetaD [2] {\mathrm{Beta} \paren*{#1, #2}}
+\newcommand \BernD [1] {\mathrm{Bernoulli} \paren*{#1}}
+\newcommand \ExpD [1] {\mathrm{Exp} \paren*{#1}}
+\newcommand \GammaD [2] {\mathrm{Gamma} \paren*{#1, #2}}
+\newcommand \InvGammaD [2] {\mathrm{InvGamma} \paren*{#1, #2}}
+\newcommand \BinomD [2] {\mathrm{Binomial} \paren*{#1, #2}}
+\newcommand \NegBinomD [2] {\mathrm{NegBinom} \paren*{#1, #2}}
+\newcommand \NormalD [2] {\mathrm{Normal} \paren*{#1, #2}}
+\newcommand \MVND [2] {\mathrm{MVN} \paren*{#1, #2}}
+\newcommand \HalfCauchyD [2] {\mathrm{C}^+ \paren*{#1, #2}}
+
+% parameterized in terms of variance, not standard deviation!
+\newcommand \NormalPDF [3] {\frac{1}{\sqrt{2 \pi #3}} \exp \paren*{-\frac{\paren*{#1 - #2}^2}{2 #3}}}
+\newcommand \CenteredNormalPDF [2] {\frac{1}{\sqrt{2 \pi #2}} \exp \paren*{-\frac{#1^2}{2 #2}}}
+\newcommand \MVNPDF [3] {\vert 2 \pi #3 \vert^{-\half} \exp \paren*{\paren*{#1 - #2}^T {#3}^{-1} \paren*{#1 - #2}}}
+\newcommand \CenteredMVNPDF [2] {\vert 2 \pi #2 \vert^{-\half} \exp \paren*{#1^T {#2}^{-1} #1}}
+
+\newcommand \GammaPDF [3] {\frac{\paren*{#3}^{#2}}{\Gamma \paren*{#2}} {#1}^{#2 - 1} \exp \paren*{-#3 #1}}
+
+
+% equations
+\def \be #1\ee {\begin{align} #1 \end{align}}
+
+% indexing variable
+\renewcommand \ij {i}
+
+% delimiters
+\DeclarePairedDelimiter{\paren}{(}{)}
+\DeclarePairedDelimiter{\set}{\{}{\}}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiterX{\ip}[2]{\langle}{\rangle}{#1, #2}
+
+
+
+% probability related
+\newcommand \p {p \paren}
+\newcommand \logp {\log p \paren}
+
+\newcommand \post {\th \vert y}
+\newcommand \llh {y \condth}
+\newcommand \pred {\yt \vert y}
+
+\newcommand \pprior {\p \th}
+\newcommand \pllh {\p {y \condth}}
+\newcommand \ppost {\p {\th \condy}}
+\newcommand \ppred {\p {\yt \condy}}
+
+\newcommand \logppost {\logp {\post}}
+\newcommand \logpprior {\logp \th}
+\newcommand \logpllh {\logp {\llh}}
+
+\newcommand \obs [1] [y] {{#1}_\ij}
+\newcommand \samp [1] [y] {{#1}_1, ..., {#1}_n}
+
+\newcommand \cond {\vert}
+\newcommand \condth {\vert \th}
+\newcommand \condy {\vert y}
+\newcommand \condobs [1] [y] {{#1}_\ij \condth}
+\newcommand \condsamp [1] [y] {{#1}_1, ..., {#1}_n \condth}
+
+\newcommand \dist {\sim}
+\newcommand \diid {\stackrel{\mathrm{iid}}{\sim}}
+\newcommand \dind {\stackrel{\mathrm{indep}}{\sim}}
+
+\newcommand \yt {\tilde{y}}
+\newcommand \yrep {y^\mathrm{rep}}
+\newcommand \yhat {\hat{y}}
+\newcommand \thhat {\hat{\th}}
+\newcommand \tauy {\tau_y}
+
+% things that go from 1 to n
+\newcommand \nsum {\sum_{\ij=1}^n}
+\newcommand \nprod {\prod_{\ij=1}^n}
+\newcommand \tsum {\sum_{\ij=1}^t}
+
+\newcommand \isum {\sum_{\ij=1}^\infty}
+\newcommand \iprod {\prod_{\ij=1}^\infty}
+
+% greek shortcuts
+\renewcommand \a {\alpha}
+\renewcommand \b {\beta}
+\newcommand \g {\gamma}
+\renewcommand \G {\Gamma}
+\newcommand \de {\delta}
+\newcommand \De {\Delta}
+\newcommand \e {\epsilon}
+\newcommand \ve {\varepsilon}
+\renewcommand \l {\lambda}
+\renewcommand \L {\Lambda}
+\renewcommand \r {\rho}
+\newcommand \vf {\varphi}
+\newcommand \s {\sigma}
+\newcommand \w {\omega}
+\renewcommand \O {\Omega}
+\renewcommand \th {\theta}
+\newcommand \ka {\kappa}
+\newcommand \z {\zeta}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\renewcommand{\vec}[1]{\bm{#1}} % Redefines vector command to bold the vectorized character.
+%\newcommand{\eps}{\varepsilon}
+% iid sample series: \sample x n
+\newcommand{\sam}[2]{#1_1,#1_2,\dots,#1_{#2}}
+% special symbols
+\newcommand{\me}{\mathrm{e}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\diff}{\mathrm{d}}
+\newcommand{\ybar}{\overline{y}}
+\newcommand{\xbar}{\overline{x}}
+\newcommand{\Xbar}{\overline{X}}
+\newcommand{\Ybar}{\overline{Y}}
+\newcommand{\bx}{\boldsymbol{x}}
+\newcommand{\by}{\boldsymbol{y}}
+\newcommand{\bX}{\boldsymbol{X}}
+\newcommand{\bY}{\boldsymbol{Y}}
+% GREEK CHARACTERS
+\newcommand{\al}{\alpha}
+\newcommand{\bal}{{\boldsymbol{\al}}}
+\newcommand{\balh}{{\hat{\boldsymbol{\al}}}}
+\newcommand{\alh}{{\hat{\al}}}
+
+\newcommand{\bt}{\beta}
+\newcommand{\btt}{{\tilde{\bt}}}
+\newcommand{\btht}{{\hat{\bt}}}
+\newcommand{\bbe}{{\boldsymbol{\beta}}}
+
+\newcommand{\ga}{\gamma}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\bGa}{{\boldsymbol{\Gamma}}}
+\newcommand{\gah}{{\hat{\g}}}
+
+\newcommand{\de}{\delta}
+\newcommand{\De}{\Delta}
+\newcommand{\Deh}{{\hat{\Delta}}}
+\newcommand{\bde}{{\boldsymbol{\de}}}
+\newcommand{\bDe}{{\boldsymbol{\De}}}
+
+\newcommand{\e}{\epsilon}
+\newcommand{\eps}{\varepsilon}
+
+\newcommand{\etah}{{\hat{\eta}}}
+\newcommand{\bpi}{{\boldsymbol{\pi}}}
+
+\newcommand{\pht}{{\tilde{\phi}}}
+\newcommand{\Pht}{{\tilde{\Phi}}}
+
+\newcommand{\pst}{{\tilde{\psi}}}
+\newcommand{\Pst}{{\tilde{\Psi}}}
+
+\newcommand{\s}{\sigma}
+\newcommand{\sih}{\hat{\sigma}}
+
+\newcommand{\z}{\zeta}
+\newcommand{\ztt}{{\tilde{\z}}}
+\newcommand{\ztb}{{\bar{\z}}}
+
+%\newcommand{\the}{\theta} % symbol name used by other latex package
+\newcommand{\thh}{{\hat{\theta}}}
+\newcommand{\Thh}{{\hat{\Theta}}}
+\newcommand{\Th}{\Theta}
+\newcommand{\bth}{{\boldsymbol{\theta}}}
+\newcommand{\bTh}{{\boldsymbol{\Theta}}}
+\newcommand{\bThh}{{\hat{\bTh}}}
+\newcommand{\Tht}{{\tilde{\Theta}}}
+\newcommand{\tht}{{\tilde{\theta}}}
+
+\newcommand{\la}{\lambda}
+\newcommand{\La}{\Lambda}
+\newcommand{\lam}{\lambda}  % backward compatibility
+\newcommand{\Lam}{\Lambda}  % backward compatibility
+\newcommand{\bLa}{{\boldsymbol{\La}}}
+\newcommand{\lah}{{\hat{\lam}}}
+
+\newcommand{\bmu}{{\boldsymbol{\mu}}}
+
+\newcommand{\bXi}{{\boldsymbol{\Xi}}}
+
+\newcommand{\bPi}{{\boldsymbol{\Pi}}}
+
+\newcommand{\rht}{{\tilde{\rho}}}
+\newcommand{\rhc}{{\check{\rho}}}
+
+\newcommand{\bSi}{{\boldsymbol{\Sigma}}}
+
+\newcommand{\ups}{\upsilon}
+\newcommand{\Ups}{\Upsilon}
+\newcommand{\bUp}{{\boldsymbol{\Ups}}}
+
+\newcommand{\bPs}{{\boldsymbol{\Psi}}}
+
+\newcommand{\w}{\omega}
+\newcommand{\wh}{{\hat{\omega}}}
+\newcommand{\W}{\Omega}
+
+

@@ -1,0 +1,1396 @@
+---
+title: "R Markdown 用法"
+author: Fiona
+date: '2019-10-10'
+slug: ''
+categories:
+  - R
+tags:
+  - Rmarkdown
+image:
+  caption: ''
+  focal_point: ''
+output:
+  blogdown::html_page:
+    toc: true
+    toc_depth: 2
+    number_sections: TRUE
+citation_package: natbib
+colorlinks: yes
+bibliography:
+- bib/packages.bib
+- bib/book.bib
+link-citations: yes
+bibli0-style: apalike
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#markdown-基本语法"><span class="toc-section-number">1</span> Markdown 基本语法</a><ul>
+<li><a href="#段落"><span class="toc-section-number">1.1</span> 段落</a></li>
+<li><a href="#段内文字格式"><span class="toc-section-number">1.2</span> 段内文字格式</a></li>
+<li><a href="#标题和分隔线"><span class="toc-section-number">1.3</span> 标题和分隔线</a></li>
+<li><a href="#引用段落"><span class="toc-section-number">1.4</span> 引用段落</a></li>
+<li><a href="#列表"><span class="toc-section-number">1.5</span> 列表</a></li>
+<li><a href="#源程序代码"><span class="toc-section-number">1.6</span> 源程序代码</a></li>
+<li><a href="#链接"><span class="toc-section-number">1.7</span> 链接</a></li>
+</ul></li>
+<li><a href="#数学公式"><span class="toc-section-number">2</span> 数学公式</a><ul>
+<li><a href="#markdown公式"><span class="toc-section-number">2.1</span> Markdown公式</a></li>
+<li><a href="#latex公式环境"><span class="toc-section-number">2.2</span> LaTeX公式环境</a></li>
+<li><a href="#参考手册"><span class="toc-section-number">2.3</span> 参考手册</a></li>
+</ul></li>
+<li><a href="#r代码块"><span class="toc-section-number">3</span> R代码块</a><ul>
+<li><a href="#行内r代码"><span class="toc-section-number">3.1</span> 行内R代码</a></li>
+<li><a href="#插入r代码块"><span class="toc-section-number">3.2</span> 插入R代码块</a></li>
+<li><a href="#代码块常用选项"><span class="toc-section-number">3.3</span> 代码块常用选项</a></li>
+</ul></li>
+<li><a href="#图形"><span class="toc-section-number">4</span> 图形</a><ul>
+<li><a href="#插入图片"><span class="toc-section-number">4.1</span> 插入图片</a></li>
+<li><a href="#r做图"><span class="toc-section-number">4.2</span> R做图</a></li>
+<li><a href="#一个ggplot2作图的例子"><span class="toc-section-number">4.3</span> 一个ggplot2作图的例子</a></li>
+</ul></li>
+<li><a href="#表格"><span class="toc-section-number">5</span> 表格</a><ul>
+<li><a href="#用r-markdown函数kable制作表格"><span class="toc-section-number">5.1</span> 用R Markdown函数<code>kable()</code>制作表格</a></li>
+<li><a href="#用r软件包xtable和stargazer制作表格"><span class="toc-section-number">5.2</span> 用R软件包xtable和stargazer制作表格</a></li>
+<li><a href="#markdown表格"><span class="toc-section-number">5.3</span> Markdown表格</a></li>
+</ul></li>
+<li><a href="#交叉引用"><span class="toc-section-number">6</span> 交叉引用</a><ul>
+<li><a href="#equations"><span class="toc-section-number">6.1</span> 数学公式</a></li>
+<li><a href="#theorems"><span class="toc-section-number">6.2</span> 定理</a></li>
+<li><a href="#交互引用方式列表"><span class="toc-section-number">6.3</span> 交互引用方式列表</a></li>
+</ul></li>
+<li><a href="#文献引用"><span class="toc-section-number">7</span> 文献引用</a></li>
+<li><a href="#参考文献">参考文献</a></li>
+</ul>
+</div>
+
+<div id="markdown-基本语法" class="section level1">
+<h1><span class="header-section-number">1</span> Markdown 基本语法</h1>
+<div id="段落" class="section level2">
+<h2><span class="header-section-number">1.1</span> 段落</h2>
+<p>Markdown中，一个段落由一行或连续的多行组成。段落之间以<strong>空行</strong>分隔。同一段落内的<em>不同行</em>仅表示<em>空格</em>。</p>
+<p>为了在<strong>段内换行</strong>，可在前行末尾输入<em>两个或两个以上空格</em>。 也可以输入<code>&lt;br&gt;</code>分行，但是仅对<code>html</code>和<code>word</code>格式有效，对<code>pdf</code>格式无效。</p>
+</div>
+<div id="段内文字格式" class="section level2">
+<h2><span class="header-section-number">1.2</span> 段内文字格式</h2>
+<ul>
+<li>斜体：星号或下划线包围的内容是<strong>强调</strong>格式，如 <code>_text_</code> or <code>*text*</code>：<em>text</em>。</li>
+<li>黑体：双星号或双下划线包围的内容是<strong>加重</strong>格式，如 <strong>text</strong>，<code>__text__</code> or <code>**text**</code>。</li>
+<li>下标：两个<code>~</code>包夹的内容为下标，如<code>H~2~SO~4~</code> 显示为 H<sub>2</sub>SO<sub>4</sub>。</li>
+<li>上标：两个<code>^</code>包夹内容为上标， <code>R^2^</code> 显示为 R<sup>2</sup>。</li>
+<li>显示代码：两个反向单撇号内，如 <code>`code`</code>，显示为：<code>code</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>。</li>
+<li>为了使得某些有特殊意义的字符不作特殊解释， 可以在该字符前面加上反斜杠<code>\</code>，取消其特殊含义。比如，要插入普通的星号或下划线，可以使用反斜杠保护 <code>\*</code>， 或者写成段内代码格式<code>`*`</code>。</li>
+<li>插入图片： <code>![图片标题](path/to/image)</code>，更好的图形插入方式在第<a href="#graph"><strong>??</strong></a>节介绍。</li>
+<li>脚注：<code>^[脚注文本]</code>。例如，这里插入脚注<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></li>
+</ul>
+</div>
+<div id="标题和分隔线" class="section level2">
+<h2><span class="header-section-number">1.3</span> 标题和分隔线</h2>
+<ul>
+<li>一级标题: 以井号<code>#</code>开头，或在标题下面一行输入多个等号<code>========</code>；</li>
+<li>二级标题:两个井号<code>##</code>开始。 或在标题下面一行输入多个减号<code>--------</code>；</li>
+<li>标题行前面应该空一行；</li>
+<li>用三个或三个以上连续的星号组成的行， 可以转换成分隔线;</li>
+<li>标题不编号：标题后增加<code>{-}</code>，如本文最后标题“<code># 参考文献 {-}</code>”。</li>
+</ul>
+</div>
+<div id="引用段落" class="section level2">
+<h2><span class="header-section-number">1.4</span> 引用段落</h2>
+<p>在段落的每行前面加一个大于号<code>&gt;</code>，表示引用。</p>
+<blockquote>
+<p>凡事只要看得淡些，就没有什么可忧虑的了；只要不因愤怒而夸大事态，就没有什么事情值得生气的了。
+——屠格涅夫</p>
+</blockquote>
+</div>
+<div id="列表" class="section level2">
+<h2><span class="header-section-number">1.5</span> 列表</h2>
+<p>不编号列表：以 <code>*</code>、 <code>-</code> 或 <code>+</code>开头，空两格。下一行再空四个空格可以嵌套，如：</p>
+<pre class="markdown"><code>- 第一项
+- 第二项
+    - 第二项的第一项
+    - 第二项的第二项</code></pre>
+<p>结果：</p>
+<ul>
+<li>第一项</li>
+<li>第二项
+<ul>
+<li>第二项的第一项</li>
+<li>第二项的第二项</li>
+</ul></li>
+</ul>
+<p>带编号列表：</p>
+<pre class="markdown"><code>1. 第一项
+2. 第二项
+3. 第三项</code></pre>
+</div>
+<div id="源程序代码" class="section level2">
+<h2><span class="header-section-number">1.6</span> 源程序代码</h2>
+<p>三个或以上连续的反向单撇号表示代码开头与代码结束，缩进四个空格也可以。</p>
+<pre class="markdown"><code>```
+这是代码
+```
+
+或缩进四个空格:
+
+    这是代码</code></pre>
+<p>使用栅栏式代码块，可以彩色语法和行号显示等多种选项，如.cpp表示C++，.c表示C，.r表示R，.python表示python等。 选项.numberLines要求该代码行编号， 选项startFrom=指定开始行号。</p>
+<p>另外，如果代码内本身含有<code>~</code>行， 只要使得开头与结尾标志中的<code>~</code>个数更多就可以了。</p>
+<pre class="markdown"><code>~~~{.python .numberLines startFrom=101}
+# 计算面积函数
+def area(width, height):
+    return width * height
+ 
+def print_welcome(name):
+    print(&quot;Welcome&quot;, name)
+ 
+print_welcome(&quot;Runoob&quot;)
+}
+~~~</code></pre>
+<p>结果：</p>
+<pre class="python numberLines" startFrom="101"><code>def area(width, height):
+    return width * height
+ 
+def print_welcome(name):
+    print(&quot;Welcome&quot;, name)
+ 
+print_welcome(&quot;Runoob&quot;)
+}</code></pre>
+</div>
+<div id="链接" class="section level2">
+<h2><span class="header-section-number">1.7</span> 链接</h2>
+<ul>
+<li>直接链接。<br />
+<code>深圳大学的网页地址是： &lt;https://www.szu.edu.cn/&gt;</code> 。<br />
+显示为 深圳大学的网页地址是： <a href="https://www.szu.edu.cn/" class="uri">https://www.szu.edu.cn/</a>。</li>
+<li>行内式链接。<br />
+<code>[显示的文本](链接网址)</code>,<br />
+例如，请参考 <code>[RStudio](https://www.rstudio.com)</code>，<br />
+显示为<a href="https://www.rstudio.com">RStudio</a>。</li>
+</ul>
+</div>
+</div>
+<div id="数学公式" class="section level1">
+<h1><span class="header-section-number">2</span> 数学公式</h1>
+<div id="markdown公式" class="section level2">
+<h2><span class="header-section-number">2.1</span> Markdown公式</h2>
+<p><strong>行内公式</strong>用两个美元符号，<code>$y=x^2$</code>显示<span class="math inline">\(y=x^2\)</span>。</p>
+<p><strong>整行公式</strong>（display style）最简单的方法是用两双美元符号之间表示：</p>
+<p><code>$$f(x) = \frac{1}{2} \sum_{i=1}^\infty \int_0^1 \sin^2(i t x) dt.$$</code>，</p>
+<p><span class="math display">\[
+  f(x) = \frac{1}{2} \sum_{i=1}^\infty \int_0^1 \sin^2(i t x)\ \rm{d}t .
+\]</span></p>
+<p><strong>矩阵和行列式公式</strong></p>
+<p>可以通过<code>\begin{array}</code>和<code>\end{array}</code>：</p>
+<pre class="latex"><code>$$X=\left(\begin{array}{ccc}
+x_{11} &amp; x_{12} &amp; x_{13}\\
+x_{21} &amp; x_{22} &amp; x_{23}
+\end{array}\right)$$</code></pre>
+<p><span class="math display">\[X=\left(\begin{array}{ccc}
+x_{11} &amp; x_{12} &amp; x_{13}\\
+x_{21} &amp; x_{22} &amp; x_{23}
+\end{array}\right)\]</span></p>
+<p>也可以通过<code>\begin{matrix}</code>和<code>\end{matrix}</code>（有b，B，p，P，v，V等多种格式）：</p>
+<pre class="latex"><code>$$\begin{matrix}a &amp; b\\\\c &amp;d\end{matrix}$$</code></pre>
+<p><span class="math display">\[\begin{matrix}a &amp; b\\\\c &amp;d\end{matrix}\]</span></p>
+<pre><code>$$\begin{pmatrix}a &amp; b\\\\c &amp;d\end{pmatrix}$$</code></pre>
+<p><span class="math display">\[\begin{pmatrix}a &amp; b\\\\c &amp;d\end{pmatrix}\]</span></p>
+<pre><code>$$\begin{bmatrix}a &amp; b\\\\c &amp;d\end{bmatrix}$$</code></pre>
+<p><span class="math display">\[\begin{bmatrix}a &amp; b\\\\c &amp;d\end{bmatrix}\]</span></p>
+<pre><code>$$\begin{Bmatrix}a &amp; b\\\\c &amp;d\end{Bmatrix}$$</code></pre>
+<p><span class="math display">\[\begin{Bmatrix}a &amp; b\\\\c &amp;d\end{Bmatrix}\]</span></p>
+<pre><code>$$\begin{vmatrix}a &amp; b\\\\c &amp;d\end{vmatrix}$$</code></pre>
+<p><span class="math display">\[\begin{vmatrix}a &amp; b\\\\c &amp;d\end{vmatrix}\]</span></p>
+<pre><code>$$\left|\begin{matrix}a &amp; b\\\\c &amp;d\end{matrix}\right|$$</code></pre>
+<p><span class="math display">\[\left|\begin{matrix}a &amp; b\\\\c &amp;d\end{matrix}\right|\]</span></p>
+<pre><code>$$\begin{Vmatrix}a &amp; b\\\\c &amp;dend{Vmatrix}$$</code></pre>
+<p><span class="math display">\[\begin{Vmatrix}a &amp; b\\\\c &amp; d \end{Vmatrix}\]</span></p>
+<p>分段函数：</p>
+<pre class="markdown"><code>f(x)=
+\begin{cases}
+\sin(x) &amp; x&gt;0,\\
+0 &amp; x=0,\\
+\cos(x) &amp; x&lt;0.
+\end{cases}</code></pre>
+<p><span class="math display">\[
+f(x)=
+\begin{cases}
+\sin(x) &amp; x&gt;0,\\
+0 &amp; x=0,\\
+\cos(x) &amp; x&lt;0.
+\end{cases}
+\]</span></p>
+<p>这样的整行公式输出html格式非常简单，效果也好。但是，如果要输出pdf文档或word文档，并且公式、图表的编号还要交互引用的话，就可能有问题。所以，一般情况下，建议用LaTeX的公式环境。</p>
+</div>
+<div id="latex公式环境" class="section level2">
+<h2><span class="header-section-number">2.2</span> LaTeX公式环境</h2>
+<p><strong>一行整行公式</strong>：公式自动居中。</p>
+<pre class="markdown"><code>\begin{equation}
+y=f(x) 
+\end{equation}</code></pre>
+<p><span class="math display">\[\begin{equation}
+y=f(x) 
+\end{equation}\]</span></p>
+<p>关于<strong>公式编号</strong>：输出为html时，公式默认不编号，只有标注了的公式才编号。而输出为pdf时，一般默认为自动编号。</p>
+<p>如果想输出的公式<strong>不编号</strong>，可以用<code>equation*</code> 环境或在该公式后面增加 <code>\nonumber</code> 或 <code>\notag</code>。其它公式环境类似，如<code>eqnarray*</code>, <code>gather*</code>, <code>align*</code>等。</p>
+<pre class="markdown"><code>\begin{equation*} 
+\frac{d}{dx}\left( \int_{a}^{x} f(u)\,du\right)=f(x)
+\end{equation*} </code></pre>
+<p><span class="math display">\[\begin{equation*} 
+\frac{d}{dx}\left( \int_{a}^{x} f(u)\,du\right)=f(x)
+\end{equation*}\]</span></p>
+<p><strong>多行公式</strong>: 用<code>eqnarray</code>，等号对齐用<code>&amp;=&amp;</code>，换行用 <code>\\</code>。</p>
+<p><span class="math display" id="eq:eqn2">\[\begin{eqnarray}
+y &amp;=&amp; f(x)+c \tag{2.1} \\
+z &amp;=&amp; g(y)+sin(x)
+\end{eqnarray}\]</span></p>
+<p><strong>公式对齐</strong>可以用 <code>align</code>，等号对齐用 <code>&amp;=</code>；默认情况下，<code>align</code> 环境里每行都会指定一个编号，如果某行不要编号，可用 <code>\notag</code>。</p>
+<pre class="latex"><code>\begin{align} 
+g(X_{n}) &amp;= g(\theta)+g&#39;({\tilde{\theta}})(X_{n}-\theta) \notag \\
+\sqrt{n}[g(X_{n})-g(\theta)] &amp;= g&#39;\left({\tilde{\theta}}\right)
+  \sqrt{n}[X_{n}-\theta ] (\#eq:grad)
+\end{align} </code></pre>
+<p><span class="math display" id="eq:grad">\[\begin{align}
+g(X_{n}) &amp;= g(\theta)+g&#39;({\tilde{\theta}})(X_{n}-\theta) \notag \\
+\sqrt{n}[g(X_{n})-g(\theta)] &amp;= g&#39;\left({\tilde{\theta}}\right)
+  \sqrt{n}[X_{n}-\theta ] \tag{2.2}
+\end{align}\]</span></p>
+<p>如果希望<strong>多行公式共享一个编号</strong>，可用 <code>split</code>环境：</p>
+<pre class="latex"><code>\begin{equation} 
+\begin{split}
+\mathrm{Var}(\hat{\beta}) 
+ &amp; =\mathrm{Var}((X&#39;X)^{-1}X&#39;y)\\
+ &amp; =(X&#39;X)^{-1}X&#39;\mathrm{Var}(y)X(X&#39;X)^{-1}\\
+ &amp; =(X&#39;X)^{-1}\sigma^{2}
+\end{split} (\#eq:multi-eq)
+\end{equation} </code></pre>
+<p><span class="math display" id="eq:multi-eq">\[\begin{equation}
+\begin{split}
+\mathrm{Var}(\hat{\beta})
+ &amp; =\mathrm{Var}((X&#39;X)^{-1}X&#39;y)\\
+ &amp; =(X&#39;X)^{-1}X&#39;\mathrm{Var}(y)((X&#39;X)^{-1}X&#39;)&#39;\\
+ &amp; =(X&#39;X)^{-1}\sigma^{2}
+\end{split} \tag{2.3}
+\end{equation}\]</span></p>
+</div>
+<div id="参考手册" class="section level2">
+<h2><span class="header-section-number">2.3</span> 参考手册</h2>
+<p>LaTeX参考手册：<a href="https://wch.github.io/latexsheet/latexsheet-a4.pdf" class="uri">https://wch.github.io/latexsheet/latexsheet-a4.pdf</a></p>
+<p>RStudio 的Help还有很多使用手册(Cheatsheets)，也可以去下载：<a href="https://www.rstudio.com/resources/cheatsheets/" class="uri">https://www.rstudio.com/resources/cheatsheets/</a>。</p>
+</div>
+</div>
+<div id="r代码块" class="section level1">
+<h1><span class="header-section-number">3</span> R代码块</h1>
+<div id="行内r代码" class="section level2">
+<h2><span class="header-section-number">3.1</span> 行内R代码</h2>
+<p>方法是：<code>`r R_CODE`</code>。
+如<code>`r exp(sin(pi/2))`</code>，
+计算结果为<span class="math inline">\(e^{\sin(\pi/2)}= 2.7182818\)</span>。</p>
+</div>
+<div id="插入r代码块" class="section level2">
+<h2><span class="header-section-number">3.2</span> 插入R代码块</h2>
+<p>代码块可以运行代码并输出文本结果、图形和表格，使得R和Markdown方便的放在一起<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>。</p>
+<pre><code>```{r}
+```</code></pre>
+<p>代码块有丰富的控制选项，可参考 <em>knitr</em> 说明文档 <a href="https://yihui.name/knitr/options" class="uri">https://yihui.name/knitr/options</a>。</p>
+<p>在 RStudio 左上角的<code>Insert</code>可插入R 代码（也可以是Python、Stan等），或者用快捷键<code>Ctrl + Alt + I</code>。</p>
+</div>
+<div id="代码块常用选项" class="section level2">
+<h2><span class="header-section-number">3.3</span> 代码块常用选项</h2>
+<ul>
+<li><code>eval</code>: 代码块是否运行。 <code>eval=FALSE</code>代码仅显示而不实际运行。</li>
+<li><code>echo</code>:是否在结果中显示源代码。</li>
+<li><code>results</code>: 用选项<code>results=</code>选择文本型结果的类型。 取值有：
+<ul>
+<li>markup, 这是缺省选项， 会把文本型结果变成HTML的原样文本格式。</li>
+<li>hide, 运行了代码后不显示运行结果。</li>
+<li>hold, 一个代码块所有的代码都显示完， 才显示所有的结果。</li>
+<li>asis, “as-is”, 直接输出源代码文本。knitr包的<code>kable()</code>函数可以把数据框转换为HTML表格。</li>
+</ul></li>
+<li><code>collapse</code>: 是否把源代码和输出文本放在一个输出文本块。默认是分开的。</li>
+<li><code>warning</code>, <code>message</code>, and <code>error</code>: 是否显示警告、消息和错误信息。</li>
+<li><code>include</code>: 代码块和结果是否包含在输出文档中。当<code>include = FALSE</code>，但<code>eval = TRUE</code>，则代码块和结果都不出现在输出文档里，但仍然运行。</li>
+<li><code>cache</code>: 是否缓存。部分修改时，仅运行修改部分。</li>
+<li><code>fig.width</code>: R图形本身的宽度（英寸），如<code>fig.width = 6</code>。</li>
+<li><code>fig.height</code>: R图形的高度，如 <code>fig.height = 4</code>。</li>
+<li><code>fig.asp</code>: 表示图形的高宽比。</li>
+<li><code>out.width</code>: R图形在生成文档中的宽度。如 <code>out.width = '80%'</code> 表示占页面宽度的80%。</li>
+<li><code>out.height</code>: R图形在生成文档中的高度。</li>
+<li><code>fig.align</code>: 图形的对齐方式，可以是<code>'left'</code>, <code>'center'</code>, or <code>'right'</code>。</li>
+<li><code>dev</code>: R图形的装置。常见的有<code>'pdf'</code>（for LaTeX output）、 <code>'png'</code>（for HTML output）、 <code>'svg'</code>（矢量图格式）、<code>'jpeg'</code>（压缩格式），本文用<code>'cairo_pdf'</code>，可以在图形中出现中文。</li>
+<li><code>fig.cap</code>: 图形和表格的标题。</li>
+<li><code>child</code>: 主文件中包含的子文件。</li>
+</ul>
+<p>例如：</p>
+<p><strong>只显示代码</strong>： <code>{r eval=FALSE}</code></p>
+<p><strong>显示代码+编译结果</strong>：<code>{r tidy=TRUE,warning=FALSE,message=FALSE}</code></p>
+<p><strong>只要结果，不显示代码、错误提示和报警</strong>：<code>{r echo=FALSE,warning=FALSE,message=FALSE}</code></p>
+<p><strong>输出时不显示代码和编译的结果，仅自己在Rmarkdown中调出结果或者用于预览</strong>：<br />
+<code>{r include=FALSE}</code></p>
+</div>
+</div>
+<div id="图形" class="section level1">
+<h1><span class="header-section-number">4</span> 图形</h1>
+<div id="插入图片" class="section level2">
+<h2><span class="header-section-number">4.1</span> 插入图片</h2>
+<p><strong>方式一</strong>：Markdown插入。</p>
+<p>方法简单，但不能自动编号，而且输出html和pdf时显示结果会不一致。</p>
+<ul>
+<li>插入网络图片：<code>![](网址)</code></li>
+<li>插入本地图片：<code>![](images/tline.png)</code>（子目录images下），显示为：</li>
+</ul>
+<p><img src="images/tline.png" /></p>
+<p><strong>方式二</strong>： R Mardown插入。</p>
+<p>用<em>knitr</em>函数 <code>knitr::include_graphics()</code> 插入图形（图<a href="#fig:run">4.1</a>）（设置了宽度等于页面的50%，居中）。</p>
+<pre class="r"><code>knitr::include_graphics(&quot;images/run.jpg&quot;)</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:run"></span>
+<img src="images/run.jpg" alt="插入本地图形" width="50%" />
+<p class="caption">
+Figure 4.1: 插入本地图形
+</p>
+</div>
+<p>用 <code>include_graphics()</code> 插入图形有如下优点：</p>
+<ol style="list-style-type: decimal">
+<li>不必担心文档的输出格式。LaTeX的pdf中插入图形命令是<code>\includegraphics{}</code>，在Markdown中插入图形命令是<code>![]()</code>，它们互相不认。而函数<code>include_graphics()</code> 会自动选择插入方式。</li>
+<li>无论是插入图形还是由R生成的图形，控制图形属性的指令（<code>out.width</code>等）都含义相同。</li>
+<li>可以对所有图形设置相同的大小比例。如本文设置<code>out.width = '75%'</code>。</li>
+</ol>
+<p>所以，最好是统一使用Rmd的插图方法。</p>
+</div>
+<div id="r做图" class="section level2">
+<h2><span class="header-section-number">4.2</span> R做图</h2>
+<p>R作图可以指定大小和对齐方式（见图<a href="#fig:pressure-plot">4.2</a>）。</p>
+<pre class="r"><code>par(mar = c(4, 4, 0.1, 0.1))
+plot(pressure, pch = 19)</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:pressure-plot"></span>
+<img src="/zh/post/2019-10-10-Intr-Rmd/index_files/figure-html/pressure-plot-1.png" alt="图形指定大小和位置" width="75%" />
+<p class="caption">
+Figure 4.2: 图形指定大小和位置
+</p>
+</div>
+<p>如果一幅图里有多个子图，必须设 <code>fig.show='hold'</code>，并排图形加起来宽度不能超过文本宽度。如两个子图并排，每个不能超过<code>50%</code><a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>。</p>
+<p>见图<a href="#fig:multiplot">4.3</a>。</p>
+<pre class="r"><code>par(mar = c(4, 4, 0.1, 0.1))
+plot(pressure, pch = 19, type = &quot;b&quot;)
+plot(cars, pch = 19)</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:multiplot"></span>
+<img src="/zh/post/2019-10-10-Intr-Rmd/index_files/figure-html/multiplot-1.png" alt="两个图形并排" width="45%" /><img src="/zh/post/2019-10-10-Intr-Rmd/index_files/figure-html/multiplot-2.png" alt="两个图形并排" width="45%" />
+<p class="caption">
+Figure 4.3: 两个图形并排
+</p>
+</div>
+</div>
+<div id="一个ggplot2作图的例子" class="section level2">
+<h2><span class="header-section-number">4.3</span> 一个ggplot2作图的例子</h2>
+<p>软件包<code>ggplot2</code><span class="citation">(Wickham et al. <a href="#ref-R-ggplot2" role="doc-biblioref">2018</a>)</span>是R中可视化的利器，作者是Hadley Wickham。“gg” 表示 “Grammar of Graphics”的意思，作图理念是分图层，</p>
+<blockquote>
+<p>Plot（图形） = data（数据） + Aesthetics（美学） + Geometry（几何）</p>
+</blockquote>
+<p>包括:</p>
+<ul>
+<li>data 指数据框(data frame)</li>
+<li>Aesthetics标明x和y变量，以及控制图形的颜色、大小、数据点的形状、柱形的高低等美学特征</li>
+<li>Geometry 表示图形的几何形状（直方图、箱线图、密度图等）</li>
+<li>统计变换（Statistics）：对数据进行某种汇总，如直方图，或将二维关系用线性模型解释</li>
+<li>标度（Scale）：将数据的取值映射到图形空间，例如用：颜色、大小、形状表示不同取值</li>
+<li>坐标系（Coordinate）：数据如何映射到图形所在平面，提供作图所需的坐标轴和网格线</li>
+<li>分面（Facet）：将数据分解为子集，进行联合展示</li>
+<li>图层（Layer）：对所需的绘图操作进行一层一层叠加，最终得到所需图形</li>
+</ul>
+<p>下面具体介绍一个用ggplot2作图的例子<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>。</p>
+<div id="散点图" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> 散点图</h3>
+<pre class="r"><code>library(ggplot2)
+p &lt;- ggplot(data = mpg, mapping = aes(x = cty, y = hwy))
+p + geom_point()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:points"></span>
+<img src="/zh/post/2019-10-10-Intr-Rmd/index_files/figure-html/points-1.png" alt="ggplot2 with points" width="75%" />
+<p class="caption">
+Figure 4.4: ggplot2 with points
+</p>
+</div>
+<p>第一行指定数据集、映射（坐标轴），第二行表示在<code>p</code>的基础上加上点，<code>geom</code>表示的是 geometric object（几何对象）（见图<a href="#fig:points">4.4</a>）。</p>
+<p>mpg是ggplot2里面的一个关于汽车的数据集。</p>
+<ul>
+<li>cty：city miles per gallon</li>
+<li>hwy：highway miles per gallon</li>
+<li>year：year of manufacture</li>
+<li>displ：engine displacement, in litres</li>
+<li>cyl：number of cylinders</li>
+<li>class：“type” of car</li>
+</ul>
+</div>
+<div id="变换颜色" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> 变换颜色</h3>
+<p>按生产年份以颜色区分，<code>factor(year))</code>是把年份转化为因子形式（相当于定类变量）, 见图 <a href="#fig:colors">4.5</a>。</p>
+<pre class="r"><code>p &lt;- ggplot(mpg, aes(x = cty, y = hwy, colour = factor(year)))
+p + geom_point()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:colors"></span>
+<img src="/zh/post/2019-10-10-Intr-Rmd/index_files/figure-html/colors-1.png" alt="ggplot2 with points colors" width="75%" />
+<p class="caption">
+Figure 4.5: ggplot2 with points colors
+</p>
+</div>
+</div>
+<div id="拟合曲线" class="section level3">
+<h3><span class="header-section-number">4.3.3</span> 拟合曲线</h3>
+<p>再加一行 <code>+ stat_smooth()</code>，其中<code>stat</code>表示 statistical transformation，做了统计平滑拟合直线，以及置信区间, 见图 <a href="#fig:trends">4.6</a>。</p>
+<pre class="r"><code>p + geom_point() + stat_smooth()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:trends"></span>
+<img src="/zh/post/2019-10-10-Intr-Rmd/index_files/figure-html/trends-1.png" alt="ggplot2 with smooth trends" width="75%" />
+<p class="caption">
+Figure 4.6: ggplot2 with smooth trends
+</p>
+</div>
+</div>
+<div id="变换大小" class="section level3">
+<h3><span class="header-section-number">4.3.4</span> 变换大小</h3>
+<p>上图的数据点明显偏小，可以让这些数据点随着<strong>汽车排量</strong>的大小而变化, 见图 <a href="#fig:size">4.7</a>。</p>
+<pre class="r"><code>p + geom_point(aes(colour = factor(year), size = displ)) + stat_smooth()  # 排量越大，点越大</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:size"></span>
+<img src="/zh/post/2019-10-10-Intr-Rmd/index_files/figure-html/size-1.png" alt="ggplot2 with variable point size" width="75%" />
+<p class="caption">
+Figure 4.7: ggplot2 with variable point size
+</p>
+</div>
+</div>
+<div id="修改透明度" class="section level3">
+<h3><span class="header-section-number">4.3.5</span> 修改透明度</h3>
+<p>数据点太密集，增加透明度，解决点与点之间的重叠的问题, 见图 <a href="#fig:trans">4.8</a>。</p>
+<pre class="r"><code>p + geom_point(aes(colour = factor(year), size = displ), alpha = 0.5) + stat_smooth() + 
+    scale_size_continuous(range = c(4, 10))</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:trans"></span>
+<img src="/zh/post/2019-10-10-Intr-Rmd/index_files/figure-html/trans-1.png" alt="ggplot2 with transparent points" width="75%" />
+<p class="caption">
+Figure 4.8: ggplot2 with transparent points
+</p>
+</div>
+<p><code>alpha=0.5</code> 在<code>aes()</code>的外面，代表对所有的点都强制透明度为0.5。</p>
+</div>
+<div id="图形分层" class="section level3">
+<h3><span class="header-section-number">4.3.6</span> 图形分层</h3>
+<p>1999年与2008年数据点全部挤在一块，太拥挤了，应采用分层，见图 <a href="#fig:facet">4.9</a>。</p>
+<pre class="r"><code>p + geom_point(aes(colour = class, size = displ), alpha = 0.5) + stat_smooth() + 
+    scale_size_continuous(range = c(4, 10)) + facet_wrap(~year, ncol = 1)</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:facet"></span>
+<img src="/zh/post/2019-10-10-Intr-Rmd/index_files/figure-html/facet-1.png" alt="ggplot2 with facets" width="75%" />
+<p class="caption">
+Figure 4.9: ggplot2 with facets
+</p>
+</div>
+<ul>
+<li><code>facet_wrap()</code> 是<code>facet</code>与<code>wrap</code>两个词组合，表示逐面包起来。</li>
+<li><code>~year</code> 表示按变量<code>year</code>分层，将1999与2008分开。</li>
+<li><code>ncol = 1</code> 代表小窗口是1列，指定了1列之后，默认就是两行（因为年份一共只有两种）。如果不加这句，会默认横着排列，或者想要指定几行，则使用<code>nrow = 1</code>。</li>
+<li>这里颜色指定了 <code>colour = class</code>，代表不同种类的汽车。</li>
+<li>添加了<code>scale_size_continuous(range = c(4, 10))</code>，指定<code>size</code>的变化范围。在本图中，就是控制点的绝对大小的范围， 不要太大，也不要太小。</li>
+</ul>
+</div>
+<div id="添加中文标注" class="section level3">
+<h3><span class="header-section-number">4.3.7</span> 添加中文标注</h3>
+<p>默认情况下图形是不能出现中文的，要使得中文在图形中正常显示，必须在文档开头的<code>output</code>下面加上： <code>dev: "cairo_pdf"</code>，也可以在R代码中加上<code>pdf.options(family="GB1")</code>。</p>
+<pre class="r"><code>p + geom_point(aes(colour = class, size = displ), alpha = 0.5) + stat_smooth() + 
+    scale_size_continuous(range = c(4, 10)) + facet_wrap(~year, ncol = 1) + labs(y = &quot;每加仑高速公路行驶距离&quot;, 
+    x = &quot;每加仑城市公路行驶距离&quot;, title = &quot;汽车油耗与型号&quot;, size = &quot;排量&quot;, colour = &quot;车型&quot;) + 
+    theme(text = element_text(family = &quot;STHeiti&quot;), plot.title = element_text(hjust = 0.5))</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:zh"></span>
+<img src="/zh/post/2019-10-10-Intr-Rmd/index_files/figure-html/zh-1.png" alt="ggplot2中显示中文" width="75%" />
+<p class="caption">
+Figure 4.10: ggplot2中显示中文
+</p>
+</div>
+<p>图 <a href="#fig:zh">4.10</a>中，</p>
+<ul>
+<li><code>labs()</code>修改的是标签的名称。</li>
+<li><code>theme()</code>主题，更偏向于格式的修改。<code>text = element_text(family = "STHeiti")</code> 是对字体进行修改，变为黑体。Windows系统可以不添加这行，一样会显示前面labs()中设定的中文。而如果是Mac或者Linux系统，由于字体的缺失，会显示成一个一个的框框，在图像上显示不了中文字。</li>
+<li><code>plot.title = element_text(hjust = 0.5)</code> 调整标题的位置，不加这行，标题会居左，加上才会居中。<code>hjust = 0.5</code> 其实就是左右移动的意思，0.5表示居中。</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="表格" class="section level1">
+<h1><span class="header-section-number">5</span> 表格</h1>
+<div id="用r-markdown函数kable制作表格" class="section level2">
+<h2><span class="header-section-number">5.1</span> 用R Markdown函数<code>kable()</code>制作表格</h2>
+<p>用法：<code>knitr::kable()</code></p>
+<p>这是R Markdown显示表格最方便的方式，可以把数据框或模型结果转化成有格式的表格， 支持HTML、docx、LaTeX等格式，并且表格有标题选项，可以自动编号和交互引用，例如表<a href="#tab:table-single">5.1</a>。</p>
+<pre class="r"><code>knitr::kable(
+  head(mtcars[, 1:8], 10), booktabs = TRUE,
+  caption = &#39;mtcars数据的前10行&#39;
+)</code></pre>
+<table>
+<caption><span id="tab:table-single">Table 5.1: </span>mtcars数据的前10行</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">mpg</th>
+<th align="right">cyl</th>
+<th align="right">disp</th>
+<th align="right">hp</th>
+<th align="right">drat</th>
+<th align="right">wt</th>
+<th align="right">qsec</th>
+<th align="right">vs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mazda RX4</td>
+<td align="right">21.0</td>
+<td align="right">6</td>
+<td align="right">160.0</td>
+<td align="right">110</td>
+<td align="right">3.90</td>
+<td align="right">2.620</td>
+<td align="right">16.46</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>Mazda RX4 Wag</td>
+<td align="right">21.0</td>
+<td align="right">6</td>
+<td align="right">160.0</td>
+<td align="right">110</td>
+<td align="right">3.90</td>
+<td align="right">2.875</td>
+<td align="right">17.02</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td>Datsun 710</td>
+<td align="right">22.8</td>
+<td align="right">4</td>
+<td align="right">108.0</td>
+<td align="right">93</td>
+<td align="right">3.85</td>
+<td align="right">2.320</td>
+<td align="right">18.61</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>Hornet 4 Drive</td>
+<td align="right">21.4</td>
+<td align="right">6</td>
+<td align="right">258.0</td>
+<td align="right">110</td>
+<td align="right">3.08</td>
+<td align="right">3.215</td>
+<td align="right">19.44</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>Hornet Sportabout</td>
+<td align="right">18.7</td>
+<td align="right">8</td>
+<td align="right">360.0</td>
+<td align="right">175</td>
+<td align="right">3.15</td>
+<td align="right">3.440</td>
+<td align="right">17.02</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>Valiant</td>
+<td align="right">18.1</td>
+<td align="right">6</td>
+<td align="right">225.0</td>
+<td align="right">105</td>
+<td align="right">2.76</td>
+<td align="right">3.460</td>
+<td align="right">20.22</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>Duster 360</td>
+<td align="right">14.3</td>
+<td align="right">8</td>
+<td align="right">360.0</td>
+<td align="right">245</td>
+<td align="right">3.21</td>
+<td align="right">3.570</td>
+<td align="right">15.84</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>Merc 240D</td>
+<td align="right">24.4</td>
+<td align="right">4</td>
+<td align="right">146.7</td>
+<td align="right">62</td>
+<td align="right">3.69</td>
+<td align="right">3.190</td>
+<td align="right">20.00</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>Merc 230</td>
+<td align="right">22.8</td>
+<td align="right">4</td>
+<td align="right">140.8</td>
+<td align="right">95</td>
+<td align="right">3.92</td>
+<td align="right">3.150</td>
+<td align="right">22.90</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>Merc 280</td>
+<td align="right">19.2</td>
+<td align="right">6</td>
+<td align="right">167.6</td>
+<td align="right">123</td>
+<td align="right">3.92</td>
+<td align="right">3.440</td>
+<td align="right">18.30</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>回归模型的回归系数用表格显示（表<a href="#tab:reg">5.2</a>）：</p>
+<pre class="r"><code>x &lt;- rnorm(100, mean = 100, sd = 10)
+y &lt;- 2 * x + 3 * rnorm(100)
+out &lt;- lm(y ~ x)
+cofs &lt;- summary(out)$coefficients
+knitr::kable(cofs, booktabs = TRUE, caption = &quot;回归系数及显著性检验结果&quot;)</code></pre>
+<table>
+<caption><span id="tab:reg">Table 5.2: </span>回归系数及显著性检验结果</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+<th align="right">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(Intercept)</td>
+<td align="right">0.5689172</td>
+<td align="right">3.0662516</td>
+<td align="right">0.1855416</td>
+<td align="right">0.8531878</td>
+</tr>
+<tr class="even">
+<td>x</td>
+<td align="right">1.9980722</td>
+<td align="right">0.0304439</td>
+<td align="right">65.6312709</td>
+<td align="right">0.0000000</td>
+</tr>
+</tbody>
+</table>
+<p>在LaTeX的pdf中，表格和图形经常会浮动位置。如果不希望表格浮动（因此表格允许跨页），可以用LaTeX软件包<a href="https://www.ctan.org/pkg/longtable"><strong>longtable</strong></a>。
+当然，在html网页中不会出现这种情况，因为网页是不分页的。</p>
+<p>用法：在 <code>kable()</code>中指定<code>longtable = TRUE</code>。如</p>
+<pre><code>```{r longtable, tidy=FALSE}
+knitr::kable(
+iris[1:10, ], longtable = TRUE, booktabs = TRUE,
+caption = &#39;用longtable包生成的一个表格&#39;
+)
+```</code></pre>
+</div>
+<div id="用r软件包xtable和stargazer制作表格" class="section level2">
+<h2><span class="header-section-number">5.2</span> 用R软件包xtable和stargazer制作表格</h2>
+<p>R扩展包<a href="https://cran.r-project.org/web/packages/xtable/index.html">xtable</a> 提供了一个xtable()函数， 可以用来生成HTML格式和LaTeX格式的表格， 但是需要指定输出格式(latex, html或text)，不像kable可以同时输出多种格式。如果输出pdf，需在代码块选项中选择<code>results="asis"</code>，并且预先加载软件包<code>library(xtable)</code>。</p>
+<p>这是原始输出结果：</p>
+<pre class="r"><code>library(&quot;datasets&quot;)
+states &lt;- as.data.frame(state.x77[, c(&quot;Murder&quot;, &quot;Population&quot;, &quot;Illiteracy&quot;, &quot;Income&quot;, 
+    &quot;Frost&quot;)])
+fit &lt;- lm(Murder ~ ., data = states)
+summary(fit)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Murder ~ ., data = states)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.7960 -1.6495 -0.0811  1.4815  7.6210 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 1.235e+00  3.866e+00   0.319   0.7510    
+## Population  2.237e-04  9.052e-05   2.471   0.0173 *  
+## Illiteracy  4.143e+00  8.744e-01   4.738 2.19e-05 ***
+## Income      6.442e-05  6.837e-04   0.094   0.9253    
+## Frost       5.813e-04  1.005e-02   0.058   0.9541    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.535 on 45 degrees of freedom
+## Multiple R-squared:  0.567,  Adjusted R-squared:  0.5285 
+## F-statistic: 14.73 on 4 and 45 DF,  p-value: 9.133e-08</code></pre>
+<p>xtable不仅对数据框，还可以对许多统计模型的结果输出表格,包括回归模型、方差分析、主成分分析等。</p>
+<p>如下是 xtable的输出结果：</p>
+<pre class="r"><code>library(xtable)
+print(xtable(summary(fit)), type = &quot;html&quot;)</code></pre>
+<!-- html table generated in R 3.6.2 by xtable 1.8-4 package -->
+<!-- Sun Feb 02 22:32:18 2020 -->
+<table border="1">
+<tr>
+<th>
+</th>
+<th>
+Estimate
+</th>
+<th>
+Std. Error
+</th>
+<th>
+t value
+</th>
+<th>
+Pr(&gt;|t|)
+</th>
+</tr>
+<tr>
+<td align="right">
+(Intercept)
+</td>
+<td align="right">
+1.2346
+</td>
+<td align="right">
+3.8661
+</td>
+<td align="right">
+0.32
+</td>
+<td align="right">
+0.7510
+</td>
+</tr>
+<tr>
+<td align="right">
+Population
+</td>
+<td align="right">
+0.0002
+</td>
+<td align="right">
+0.0001
+</td>
+<td align="right">
+2.47
+</td>
+<td align="right">
+0.0173
+</td>
+</tr>
+<tr>
+<td align="right">
+Illiteracy
+</td>
+<td align="right">
+4.1428
+</td>
+<td align="right">
+0.8744
+</td>
+<td align="right">
+4.74
+</td>
+<td align="right">
+0.0000
+</td>
+</tr>
+<tr>
+<td align="right">
+Income
+</td>
+<td align="right">
+0.0001
+</td>
+<td align="right">
+0.0007
+</td>
+<td align="right">
+0.09
+</td>
+<td align="right">
+0.9253
+</td>
+</tr>
+<tr>
+<td align="right">
+Frost
+</td>
+<td align="right">
+0.0006
+</td>
+<td align="right">
+0.0101
+</td>
+<td align="right">
+0.06
+</td>
+<td align="right">
+0.9541
+</td>
+</tr>
+</table>
+<p>还有一个软件包<a href="https://cran.r-project.org/web/packages/stargazer/index.html">stargazer</a>与xtable类似。</p>
+<pre class="r"><code>library(&quot;stargazer&quot;)
+stargazer(fit, title = &quot;Regression Results&quot;, type = &quot;html&quot;)</code></pre>
+<table style="text-align:center">
+<caption>
+<strong>Regression Results</strong>
+</caption>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+Murder
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Population
+</td>
+<td>
+0.0002<sup>**</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.0001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Illiteracy
+</td>
+<td>
+4.143<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.874)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Income
+</td>
+<td>
+0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Frost
+</td>
+<td>
+0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.010)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+1.235
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(3.866)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+50
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.567
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.528
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+2.535 (df = 45)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+14.729<sup>***</sup> (df = 4; 45)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+</div>
+<div id="markdown表格" class="section level2">
+<h2><span class="header-section-number">5.3</span> Markdown表格</h2>
+<p>Markdown表格由简单文本表示，转化为HTML、docx等格式后就变成了富文本的表格。Markdown表格默认是不编号的，不能交互引用。为了使得其可交互引用，需要在表标题的 <code>Table:</code> 处加上引用标志，如 <code>(\#tab:label)</code>。</p>
+<div id="管道表" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> 管道表</h3>
+<p>管道表在两列之间用竖线分开， 在列标题下面用减号画横线， 用如下方法指定各对齐方式：</p>
+<ul>
+<li>在列标题下的横线开始加冒号，表示左对齐；</li>
+<li>在列标题下的横线末尾加冒号，表示右对齐；</li>
+<li>在列标题下的横线两端加冒号，表示居中对齐；</li>
+<li>列标题下面仅有横线没有冒号，表示缺省对齐方式，一般是左对齐。</li>
+</ul>
+<p>这种方法不需要输入内容上下对齐，适用于中文内容（表<a href="#tab:pipe-table">5.3</a>）。</p>
+<pre><code>| 姓名   |  收入      |    职业          | 颜色偏好  |
+|:-------|-----------:|:----------------:|-----------|
+| 赵四海  |    123456  |   业务经理      |   红      |
+| 刘英    |        50   |      无        |   蓝      |
+| 钱德里  |      3200   |    保洁        |    灰     |
+</code></pre>
+<table>
+<caption><span id="tab:pipe-table">Table 5.3: </span> 管道表</caption>
+<thead>
+<tr class="header">
+<th align="left">姓名</th>
+<th align="right">收入</th>
+<th align="center">职业</th>
+<th>颜色偏好</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">赵四海</td>
+<td align="right">123456</td>
+<td align="center">业务经理</td>
+<td>红</td>
+</tr>
+<tr class="even">
+<td align="left">刘英</td>
+<td align="right">50</td>
+<td align="center">无</td>
+<td>蓝</td>
+</tr>
+<tr class="odd">
+<td align="left">钱德里</td>
+<td align="right">3200</td>
+<td align="center">保洁</td>
+<td>灰</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="简单表" class="section level3">
+<h3><span class="header-section-number">5.3.2</span> 简单表</h3>
+<p>简单表的格式是， 第一行是各列标题， 第二行是各标题下面用减号组成的表格线， 同一行的不同列要用空格分开， 从第三行开始是内容。</p>
+<p>在表格前或表格后用空行隔开的以Table:开头的行是表格说明或标题。</p>
+<p>为了确定表格每列单元格内容如何对齐， 用列标题下的表格线给出提示：</p>
+<ul>
+<li>表格线与列标题右对齐，表示该列右对齐；</li>
+<li>表格线与列标题左对齐，表示该列左对齐；</li>
+<li>列标题在表格线中间，表示该列居中对齐；</li>
+<li>列标题左右都与表格线对齐，表示该列为缺省对齐方式，一般是左对齐。</li>
+<li>一定要使用一个等宽字体来编辑这样的表格，否则对齐与否无法准确分辨。</li>
+<li>单元格内容不能超出表格线左端。</li>
+</ul>
+<p>经过试验发现， 英文没问题，中文内容很难按这种方法对齐（表<a href="#tab:simple-table">5.4</a>）。</p>
+<table>
+<caption><span id="tab:simple-table">Table 5.4: </span> 一个简单Markdown表格</caption>
+<thead>
+<tr class="header">
+<th align="right">Sepal.Length</th>
+<th align="right">Sepal.Width</th>
+<th align="right">Petal.Length</th>
+<th align="right">Petal.Width</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+</tr>
+<tr class="even">
+<td align="right">4.9</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+</tr>
+<tr class="odd">
+<td align="right">4.7</td>
+<td align="right">3.2</td>
+<td align="right">1.3</td>
+<td align="right">0.2</td>
+</tr>
+<tr class="even">
+<td align="right">4.6</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+</tr>
+<tr class="odd">
+<td align="right">5.0</td>
+<td align="right">3.6</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+</tr>
+<tr class="even">
+<td align="right">5.4</td>
+<td align="right">3.9</td>
+<td align="right">1.7</td>
+<td align="right">0.4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="换行表" class="section level3">
+<h3><span class="header-section-number">5.3.3</span> 换行表</h3>
+<p>换行表在输入列标题和单元格内容时， 允许输入内容拆分行，但是编译后并不拆分行。 这样的表以一行减号开始，以一行减号结束， 中间的表格用空行分开实际的不同行。 例如（表<a href="#tab:multiline-table">5.5</a>）：</p>
+<table style="width:71%;">
+<caption><span id="tab:multiline-table">Table 5.5: </span> 一个换行表的例子</caption>
+<colgroup>
+<col width="13%" />
+<col width="18%" />
+<col width="30%" />
+<col width="8%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Name
+of
+Subject</th>
+<th align="right">Income</th>
+<th align="center">Job</th>
+<th>color</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Jane
+Ayer</td>
+<td align="right">123456</td>
+<td align="center">Research
+Assistant</td>
+<td>red</td>
+</tr>
+<tr class="even">
+<td align="left">John
+Tukey</td>
+<td align="right">50</td>
+<td align="center">N/A</td>
+<td>blue</td>
+</tr>
+<tr class="odd">
+<td align="left">William
+Tale</td>
+<td align="right">3200</td>
+<td align="center">Cleaner</td>
+<td>blue</td>
+</tr>
+</tbody>
+</table>
+<p>换行表输入时各列的输入宽度是有作用的，输入较宽的列结果也较宽。</p>
+</div>
+<div id="有格表" class="section level3">
+<h3><span class="header-section-number">5.3.4</span> 有格表</h3>
+<p>完全用减号、竖线、等于号、加号画出表格线。 这样的表在文本格式下呈现出很好的表格形状。 编译后不能指定对齐方式（表<a href="#tab:grid-table">5.6</a>）。</p>
+<table style="width:74%;">
+<caption><span id="tab:grid-table">Table 5.6: </span> 一个有格表</caption>
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>水果</th>
+<th>价格</th>
+<th>优点</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bananas</td>
+<td>$1.34</td>
+<td><ul>
+<li>built-in wrapper</li>
+<li>bright color</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Oranges</td>
+<td>$2.10</td>
+<td><ul>
+<li>cures scurvy</li>
+<li>tasty</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="交叉引用" class="section level1">
+<h1><span class="header-section-number">6</span> 交叉引用</h1>
+<p>R Markdown没有交叉引用（cross-reference）功能，但是bookdown可以。</p>
+<p>交叉引用包括数学公式、定理、图形、表格和章节的标记和引用。</p>
+<div id="equations" class="section level2">
+<h2><span class="header-section-number">6.1</span> 数学公式</h2>
+<p>要给公式编号，先要建立公式环境。如果公式环境是 <code>$$...$$</code>，那么输出html完全没问题，但是pdf和word都表现不佳。所以，如果要输出pdf格式，最好统一建立LaTeX公式环境，即 <code>\begin{equation}...\end{equation}</code>等。</p>
+<p>然后标记 <code>(\#eq:label)</code>, 例如</p>
+<pre class="latex"><code>\begin{equation} 
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+  (\#eq:binom)
+\end{equation} </code></pre>
+<p>结果如下:</p>
+<p><span class="math display" id="eq:binom">\[\begin{equation}
+f\left(k\right)=\binom{n}{k}p^k\left(1-p\right)^{n-k} 
+\tag{6.1}
+\end{equation}\]</span></p>
+<p>引用方法是<code>\@ref(eq:binom)</code>，如，参看公式 <a href="#eq:binom">(6.1)</a>。</p>
+</div>
+<div id="theorems" class="section level2">
+<h2><span class="header-section-number">6.2</span> 定理</h2>
+<p>用下面形式创建一个定理环境:</p>
+<pre class="markdown"><code>```{theorem，label=&quot;mylabel&quot;,name=&quot;定理名&quot;}
+这是黎曼猜想。
+```</code></pre>
+<p>一个定理的例子：</p>
+<pre class="markdown"><code>```{theorem, label=&quot;pyth&quot;, name=&quot;勾股定理&quot;}
+对于直角三角形，设$c$表示斜边的长度，$a$和$b$分别表示两条直角边的长度，则 
+$$a^2 + b^2 = c^2$$
+```</code></pre>
+<p>结果如下：</p>
+
+<div class="theorem">
+<span id="thm:pyth" class="theorem"><strong>Theorem 6.1  (勾股定理)  </strong></span>对于直角三角形，设<span class="math inline">\(c\)</span>表示斜边的长度，<span class="math inline">\(a\)</span>和<span class="math inline">\(b\)</span>分别表示两条直角边的长度，则有
+<span class="math display">\[a^2 + b^2 = c^2\]</span>
+</div>
+
+<p>引用用法：在需要引用处插入<code>\@ref(thm:label)</code>。 比如，定理<a href="#thm:pyth">6.1</a>是个著名的定理。</p>
+<p>定义、推论、命题、公里、假设等类似。</p>
+<p>注意，如果 <code>echo</code>设置为<code>FALSE</code>，定理编号失效。</p>
+
+<div class="definition">
+<span id="def:char" class="definition"><strong>Definition 6.1  </strong></span>随机变量 <span class="math inline">\(X\)</span> 的特征函数定义为
+<span class="math display">\[\varphi _{X}(t)=\operatorname {E} \left[e^{itX}\right], \; t\in\mathcal{R}\]</span>
+</div>
+
+<p>特征函数是个极为重要的函数，见定义<a href="#def:char">6.1</a>。</p>
+
+<div class="lemma">
+<p><span id="lem:chf-pdf" class="lemma"><strong>Lemma 6.1  </strong></span>For any two random variables <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, they both have the same probability distribution if and only if</p>
+<span class="math display">\[\varphi _{X_1}(t)=\varphi _{X_2}(t)\]</span>
+</div>
+
+
+<div class="proposition">
+<span id="prp:unnamed-chunk-4" class="proposition"><strong>Proposition 6.1  </strong></span>The distribution of the sum of independent Poisson random variables <span class="math inline">\(X_i \sim \mathrm{Pois}(\lambda_i),\: i=1,2,\cdots,n\)</span> is <span class="math inline">\(\mathrm{Pois}(\sum_{i=1}^n\lambda_i)\)</span>.
+</div>
+
+<p>This is the characteristic function of a Poisson random variable with the parameter <span class="math inline">\(\lambda=\sum_{i=1}^n \lambda_i\)</span>. From Lemma <a href="#lem:chf-pdf">6.1</a>, we know the distribution of <span class="math inline">\(P_n\)</span> is <span class="math inline">\(\mathrm{Pois}(\sum_{i=1}^n\lambda_i)\)</span>.</p>
+
+<div class="remark">
+ <span class="remark"><em>Remark. </em></span> In some cases, it is very convenient and easy to figure out the distribution of the sum of independent random variables using characteristic functions.
+</div>
+
+
+<div class="corollary">
+<span id="cor:unnamed-chunk-6" class="corollary"><strong>Corollary 6.1  </strong></span>The characteristic function of the sum of two independent random variables <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> is the product of characteristic functions of <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>, i.e.,
+<span class="math display">\[\varphi _{X_1+X_2}(t)=\varphi _{X_1}(t) \varphi _{X_2}(t)\]</span>
+</div>
+
+</div>
+<div id="交互引用方式列表" class="section level2">
+<h2><span class="header-section-number">6.3</span> 交互引用方式列表</h2>
+<p>对不同类型环境的交叉引用，大同小异，唯有对章节的引用区别较大。
+归纳为下表。</p>
+<table>
+<caption><span id="tab:corss-ref">Table 6.1: </span> 交叉引用的方法列表</caption>
+<thead>
+<tr class="header">
+<th align="left">类型</th>
+<th align="left">标记</th>
+<th align="left">引用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">公式</td>
+<td align="left"><code>(\#eq:label)</code></td>
+<td align="left"><code>\@ref(eq:label)</code></td>
+</tr>
+<tr class="even">
+<td align="left">图形</td>
+<td align="left"><code>(\#fig:label)</code></td>
+<td align="left"><code>\@ref(fig:label)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">表格</td>
+<td align="left"><code>(\#tab:label)</code></td>
+<td align="left"><code>\@ref(tab:label)</code></td>
+</tr>
+<tr class="even">
+<td align="left">定理</td>
+<td align="left"><code>(\#thm:label)</code></td>
+<td align="left"><code>\@ref(thm:label)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">章节</td>
+<td align="left"><code>{#label}</code></td>
+<td align="left"><code>\@ref(label)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="文献引用" class="section level1">
+<h1><span class="header-section-number">7</span> 文献引用</h1>
+<p>学术论文一般做法是，把所有文献以 <strong>BibTeX</strong> 格式保存为一个<code>.bib</code>文件，然后在论文中随时插入引用。</p>
+<p>参考文献在正文中的插入非常简单，只要在要引用的地方使用<code>[@reference key]</code>，就能实现引用。 如果同一个地方要引用多个文献，则是<code>[@reference key1; @reference key2]</code>。 在bib文档中，如<code>@Manual{R-ggplot2</code>，其中的<code>R-ggplot2</code>就是reference key，复制粘贴到[@]里面即可。</p>
+<p><strong>引用方式</strong>：</p>
+<p>一般引用有两种方式，一种是作者-年格式，另一种是数字格式。当然，一篇文章内要统一用一种格式。</p>
+<p><strong>作者-年格式</strong>(apalike样式)：<code>@key</code> 表示<em>作者姓名（年份）</em>，而 <code>[@key]</code> 则表示（<em>作者 年份</em>）。</p>
+<p><strong>数字编号格式</strong>(chinese-gb7714-1987-numeric.csl样式）：<code>@key</code>表示[序号]，<code>[@key]</code> 则表示[序号]为上标。</p>
+<p><strong>其它格式</strong>：<code>@key</code>表示[序号]，<code>[@key]</code> 表示上标[序号]，网页[序号]上标<code>&lt;sup&gt;[@key]&lt;/sup&gt;</code>。</p>
+<p><strong>示例</strong>：<code>@R-rmarkdown</code>结果显示 <span class="citation">Allaire et al. (<a href="#ref-R-rmarkdown" role="doc-biblioref">2018</a>)</span>； <code>[@R-rmarkdown;@xie2015;@R-ggplot2]</code>结果显示<span class="citation">(Allaire et al. <a href="#ref-R-rmarkdown" role="doc-biblioref">2018</a>; Xie <a href="#ref-xie2015" role="doc-biblioref">2015</a>; Wickham et al. <a href="#ref-R-ggplot2" role="doc-biblioref">2018</a>)</span>。</p>
+<p>如何产生Bibtex文献格式？</p>
+<ul>
+<li><p>一般用文献管理软件（如Zotero、Endnote等）把参考文献转为<code>.bib</code>文件。</p></li>
+<li><p>可以在知网、谷歌学术、百度学术等网站查找文献，产生Bibtex引用格式。</p></li>
+<li><p>一些常用软件包也可以用<strong>knitr</strong> 的函数<code>write_bib()</code>产生。 下面代码产生knitr、bookdown、tidyverse和ggplot2的bibtex格式文献。</p></li>
+</ul>
+<pre class="r"><code># the second argument can be a .bib file
+knitr::write_bib(c(&quot;knitr&quot;, &quot;bookdown&quot;, &quot;ggplot2&quot;), &quot;bib/mypackages.bib&quot;, width = 60)</code></pre>
+<p>文献引用要在R Markdown文档的开头的yaml部分指定文献文档名（.bib文件）和引用风格（biblio-style）。</p>
+<pre class="yaml"><code>---
+bibliography: [&quot;one.bib&quot;, &quot;another.bib&quot;, &quot;yet-another.bib&quot;]
+biblio-style: &quot;apalike&quot;
+link-citations: true
+---</code></pre>
+</div>
+<div id="参考文献" class="section level1 unnumbered">
+<h1>参考文献</h1>
+<div id="refs" class="references">
+<div id="ref-R-rmarkdown">
+<p>Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, and Winston Chang. 2018. <em>Rmarkdown: Dynamic Documents for R</em>. <a href="https://CRAN.R-project.org/package=rmarkdown">https://CRAN.R-project.org/package=rmarkdown</a>.</p>
+</div>
+<div id="ref-R-ggplot2">
+<p>Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, and Kara Woo. 2018. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+</div>
+<div id="ref-xie2015">
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>要把反向单撇号作为一般字符（而不是代码表示符），可以在外围用比它多的反向单撇号表示，如<code>`` `code` ``</code>。<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>所谓“脚注”，就是在页脚对某些文字的注释。<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>为了显示在R Markdown中实际输入的代码块(包括首尾标志)， 需要将代码段整体地缩进4个空格，并在三个反单撇号前面加上
+<code>`r ''`</code>， 即生成一个空字符串的行内R代码。<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>因为word不允许多子图，所以本文无法输出word格式。如果word确实需要多个子图，可以先保存到本地，然后再插入。<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>这个例子来自 <a href="https://blog.csdn.net/weixin_41929524/article/details/79765882" class="uri">https://blog.csdn.net/weixin_41929524/article/details/79765882</a>。<a href="#fnref5" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
