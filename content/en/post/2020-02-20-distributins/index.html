@@ -1,0 +1,426 @@
+---
+title: Common Distributions
+author:  Fiona
+date: '2020-02-02'
+slug: ''
+categories:
+  - Statistics
+tags:
+  - Blog
+image:
+  caption: ''
+  focal_point: ''
+output:
+  blogdown::html_page:
+    toc: true
+    toc_depth: 2
+    number_sections: TRUE
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#离散型随机变量的分布"><span class="toc-section-number">1</span> 离散型随机变量的分布</a><ul>
+<li><a href="#分布"><span class="toc-section-number">1.1</span> <span class="math inline">\((0-1)\)</span>分布</a></li>
+<li><a href="#二项分布"><span class="toc-section-number">1.2</span> 二项分布</a></li>
+<li><a href="#几何分布"><span class="toc-section-number">1.3</span> 几何分布</a></li>
+<li><a href="#负二项分布"><span class="toc-section-number">1.4</span> 负二项分布</a></li>
+<li><a href="#超几何分布"><span class="toc-section-number">1.5</span> 超几何分布</a></li>
+<li><a href="#泊松分布"><span class="toc-section-number">1.6</span> 泊松分布</a></li>
+</ul></li>
+<li><a href="#连续型随机变量的分布"><span class="toc-section-number">2</span> 连续型随机变量的分布</a><ul>
+<li><a href="#均匀分布"><span class="toc-section-number">2.1</span> 均匀分布</a></li>
+<li><a href="#正态分布"><span class="toc-section-number">2.2</span> 正态分布</a></li>
+<li><a href="#指数分布"><span class="toc-section-number">2.3</span> 指数分布</a></li>
+<li><a href="#伽马gamma分布"><span class="toc-section-number">2.4</span> 伽马<span class="math inline">\((\Gamma)\)</span>分布</a></li>
+<li><a href="#逆伽玛分布"><span class="toc-section-number">2.5</span> 逆伽玛分布</a></li>
+<li><a href="#贝塔beta分布"><span class="toc-section-number">2.6</span> 贝塔<span class="math inline">\((\beta)\)</span>分布</a></li>
+<li><a href="#柯西分布"><span class="toc-section-number">2.7</span> 柯西分布</a></li>
+<li><a href="#对数正态分布"><span class="toc-section-number">2.8</span> 对数正态分布</a></li>
+<li><a href="#韦布尔分布韦伯分布"><span class="toc-section-number">2.9</span> 韦布尔分布/韦伯分布</a></li>
+<li><a href="#t分布"><span class="toc-section-number">2.10</span> <span class="math inline">\(t\)</span>分布</a></li>
+<li><a href="#一般t分布"><span class="toc-section-number">2.11</span> 一般<span class="math inline">\(t\)</span>分布</a></li>
+<li><a href="#多元t分布"><span class="toc-section-number">2.12</span> 多元<span class="math inline">\(t\)</span>分布</a></li>
+<li><a href="#卡方chi2分布"><span class="toc-section-number">2.13</span> 卡方<span class="math inline">\((\chi^2)\)</span>分布</a></li>
+<li><a href="#f分布"><span class="toc-section-number">2.14</span> <span class="math inline">\(F\)</span>分布</a></li>
+<li><a href="#拉普拉斯分布"><span class="toc-section-number">2.15</span> 拉普拉斯分布</a></li>
+<li><a href="#瑞利分布"><span class="toc-section-number">2.16</span> 瑞利分布</a></li>
+</ul></li>
+<li><a href="#常用多维分布"><span class="toc-section-number">3</span> 常用多维分布</a><ul>
+<li><a href="#多项分布"><span class="toc-section-number">3.1</span> 多项分布</a></li>
+<li><a href="#多元正态分布"><span class="toc-section-number">3.2</span> 多元正态分布</a></li>
+<li><a href="#威希特分布wishart分布"><span class="toc-section-number">3.3</span> 威希特分布（Wishart分布）</a></li>
+<li><a href="#t2分布hotelling-t2-分布"><span class="toc-section-number">3.4</span> <span class="math inline">\(T^2\)</span>分布(Hotelling <span class="math inline">\(T^2\)</span> 分布)</a></li>
+<li><a href="#wilks分布"><span class="toc-section-number">3.5</span> Wilks分布</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="离散型随机变量的分布" class="section level1">
+<h1><span class="header-section-number">1</span> 离散型随机变量的分布</h1>
+<div id="分布" class="section level2">
+<h2><span class="header-section-number">1.1</span> <span class="math inline">\((0-1)\)</span>分布</h2>
+
+<div class="definition">
+<span id="def:unnamed-chunk-1" class="definition"><strong>Definition 1.1  </strong></span>设随机变量<span class="math inline">\(X\)</span>只可能取<span class="math inline">\(0\)</span>与<span class="math inline">\(1\)</span>两个值，它的分布律是
+<span class="math display">\[P(X=k)=p^kq^{1-k},k=0,1; p+q=1(0&lt;p&lt;1)，\]</span>
+则称<span class="math inline">\(X\)</span>服从<strong><span class="math inline">\((0-1)\)</span>分布</strong>或<strong>两点分布</strong>，记为<span class="math inline">\(X \sim B(x,p)\)</span>。<br />
+其中<span class="math inline">\(E(X)=p\)</span>，<span class="math inline">\(D(X)=p(1-p)\)</span>。
+</div>
+
+</div>
+<div id="二项分布" class="section level2">
+<h2><span class="header-section-number">1.2</span> 二项分布</h2>
+
+<div class="definition">
+<span id="def:unnamed-chunk-2" class="definition"><strong>Definition 1.2  </strong></span>在<span class="math inline">\(n\)</span>次独立重复试验中，记<span class="math inline">\(X\)</span>为事件A发生的次数，假设在每次试验中事件A发生的概率都是<span class="math inline">\(p\)</span>，则随机变量<span class="math inline">\(X\)</span>的分布称为<strong>二项分布</strong>，记为 <span class="math inline">\(X \sim \mbox{Binom}(n,p)\)</span>，其概率函数为
+<span class="math display">\[P(X=k|n,p)= \binom{n}{k}(1-p)^{n-k},(k=0,1,\dots,n; 0&lt;p&lt;1)\]</span>
+其中<span class="math inline">\(E(X)=np\)</span>, <span class="math inline">\(D(X)=np(1-p)\)</span>。
+</div>
+
+</div>
+<div id="几何分布" class="section level2">
+<h2><span class="header-section-number">1.3</span> 几何分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-3" class="definition"><strong>Definition 1.3  </strong></span>在<span class="math inline">\(n\)</span>次伯努利试验中，试验<span class="math inline">\(k\)</span>次才得到第一次成功的机率，即前<span class="math inline">\(k-1\)</span>次皆失败，第<span class="math inline">\(k\)</span>次成功的概率。其概率函数为
+<span class="math display">\[f(x)=P(X=x)=p(1-p)^{x-1},(x=1,2,\dots)\]</span>
+则称X的分布为<strong>几何分布</strong>，记为<span class="math inline">\(X \sim \mbox{geom}(p)\)</span>。</p>
+其数学期望和方差分别为
+<span class="math display">\[E(X) = \frac{1}{p}, D(X) = \frac{1-p}{p^2}.\]</span>
+</div>
+
+</div>
+<div id="负二项分布" class="section level2">
+<h2><span class="header-section-number">1.4</span> 负二项分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-4" class="definition"><strong>Definition 1.4  </strong></span>假设有一组独立的伯努利实验，每次实验都有两种结果“成功”和“失败”，<span class="math inline">\(X\)</span>为实验成功<span class="math inline">\(r\)</span>次之前失败的次数，实验持续到<span class="math inline">\(r\)</span>次成功，<span class="math inline">\(r\)</span>为正整数，其概率函数为
+<span class="math display">\[f(x)={r+x-1 \choose x}p^r(1-p)^x,(x=0,1,2,\dots)\]</span>
+则称<span class="math inline">\(X\)</span>的分布为<strong>负二项分布</strong>，记为<span class="math inline">\(X \sim \mbox{NB}(r,p)\)</span>。当<span class="math inline">\(r=1\)</span>时，<span class="math inline">\(\mbox{NB}(1,p)=\mbox{Geom}(p)\)</span>。</p>
+其数学期望和方差为
+<span class="math display">\[E(X) = \frac{r(1-p)}{p}, D(X) = \frac{r(1-p)}{p^2}.\]</span>
+</div>
+
+</div>
+<div id="超几何分布" class="section level2">
+<h2><span class="header-section-number">1.5</span> 超几何分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-5" class="definition"><strong>Definition 1.5  </strong></span>产品抽样检查中经常遇到一类实际问题，假定在<span class="math inline">\(N\)</span>件产品中有<span class="math inline">\(M\)</span>件不合格品，即不合格率<span class="math inline">\(p=M/N\)</span>。在产品中随机抽<span class="math inline">\(n\)</span>件做检查，发现<span class="math inline">\(k\)</span>件不合格品的概率为
+<span class="math display">\[P{X=k}= \frac{{M \choose k}{N-M \choose n-k}}{{N \choose k}},k \in Z,max\{0,n-N+M\} \leq k \leq min\{n,M\}\]</span>
+则称<span class="math inline">\(X\)</span>的分布为<strong>超几何分布</strong>，记为<span class="math inline">\(X \sim \mbox{H}(N,M,n)\)</span>。</p>
+其数学期望和方差为
+<span class="math display">\[\begin{eqnarray*}
+E(X) &amp;=&amp; \frac{nM}{N},\\
+D(X) &amp;=&amp; \frac{nM}{N}(1- \frac{M}{N})(\frac{N-n}{N-1}).
+\end{eqnarray*}\]</span>
+</div>
+
+</div>
+<div id="泊松分布" class="section level2">
+<h2><span class="header-section-number">1.6</span> 泊松分布</h2>
+
+<div class="definition">
+<span id="def:unnamed-chunk-6" class="definition"><strong>Definition 1.6  </strong></span>设随机变量<span class="math inline">\(X\)</span>所有可能取的值为<span class="math inline">\(0,1,2,\dots\)</span>，参数<span class="math inline">\(\lambda\)</span>是单位时间<span class="math inline">\([0,1]\)</span>内随机事件的平均发生次数，其概率函数为
+<span class="math display">\[P(X=x)=\frac{\lambda^xe^{- \lambda}}{x!},(x=0,1,2,\dots)\]</span>
+则称<span class="math inline">\(X\)</span>服从参数为<span class="math inline">\(\lambda\)</span>的<strong>泊松分布</strong>，记为<span class="math inline">\(X \sim \mbox{Posi}(\lambda)\)</span>。<br />
+其中<span class="math inline">\(E(X)=\lambda\)</span>，<span class="math inline">\(D(X)=\lambda\)</span>。
+</div>
+
+</div>
+</div>
+<div id="连续型随机变量的分布" class="section level1">
+<h1><span class="header-section-number">2</span> 连续型随机变量的分布</h1>
+<div id="均匀分布" class="section level2">
+<h2><span class="header-section-number">2.1</span> 均匀分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-7" class="definition"><strong>Definition 2.1  </strong></span>如果随机变量<span class="math inline">\(X\)</span>的密度函数(pdf)为
+<span class="math display">\[X \sim f(x|a,b)= \begin{cases} \frac{1}{b-a}, &amp; a&lt;x&lt;b \\ 0, &amp; \mbox{otherwise} \end{cases}\]</span>
+则<span class="math inline">\(X\)</span>的分布称为<span class="math inline">\((a,b)\)</span>区间的<strong>均匀分布</strong>，记为 <span class="math inline">\(X \sim \mbox{Unif}(a,b)\)</span>。</p>
+其数学期望和方差分别为
+<span class="math display">\[\begin{eqnarray*}
+E(X) &amp;=&amp; \frac{a+b}{2},\\
+D(X) &amp;=&amp; \frac{(b-a)^2}{12}.
+\end{eqnarray*}\]</span>
+</div>
+
+</div>
+<div id="正态分布" class="section level2">
+<h2><span class="header-section-number">2.2</span> 正态分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-8" class="definition"><strong>Definition 2.2  </strong></span>若连续型随机变量<span class="math inline">\(x\)</span>的概率密度<span class="math inline">\((pdf)\)</span>为
+<span class="math display">\[f(x)=\frac{1}{\sqrt{2 \pi}\sigma}\rm{exp}(-\frac{(x-\mu)^2}{2\sigma^2})\]</span>
+其中<span class="math inline">\(\mu,\sigma(\sigma&gt;0)\)</span>为常数，则称<span class="math inline">\(X\)</span>服从参数为<span class="math inline">\(\mu,\sigma\)</span>的<strong>正态分布</strong>，记为<span class="math inline">\(X \sim \mbox{N}(\mu,\sigma^2)\)</span>。<br />
+其中<span class="math inline">\(E(X)=\mu\)</span>，<span class="math inline">\(D(X)=\sigma^2\)</span>。<br />
+当<span class="math inline">\(\mu=0,\sigma=1\)</span>时，正态分布就成了<strong>标准正态分布</strong>，记为<span class="math inline">\(X \sim \mbox{N}(0,1)\)</span>。</p>
+<span class="math display">\[f(x)=\frac{1}{\sqrt{2 \pi}}\rm{exp}(-\frac{x^2}{2})\]</span>
+</div>
+
+</div>
+<div id="指数分布" class="section level2">
+<h2><span class="header-section-number">2.3</span> 指数分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-9" class="definition"><strong>Definition 2.3  </strong></span>设连续型随机变量<span class="math inline">\(x\)</span>的概率密度<span class="math inline">\((pdf)\)</span>为
+<span class="math display">\[f(x)= \begin{cases} \lambda e^{- \lambda x}, &amp; x &gt; 0 \\ 0, &amp; x\leq 0 \end{cases}\]</span>
+其中<span class="math inline">\(\lambda &gt; 0\)</span>为常数，则称为<span class="math inline">\(X\)</span>服从参数<span class="math inline">\(\lambda\)</span>的<strong>指数分布</strong>，记为<span class="math inline">\(X \sim \mbox{Exp}(\lambda)\)</span>。</p>
+其数学期望和方差分别为
+<span class="math display">\[E(X) = \frac{1}{\lambda}, D(X) = \frac{1}{\lambda^2}.\]</span>
+\end{eqnarray*}
+</div>
+
+</div>
+<div id="伽马gamma分布" class="section level2">
+<h2><span class="header-section-number">2.4</span> 伽马<span class="math inline">\((\Gamma)\)</span>分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-10" class="definition"><strong>Definition 2.4  </strong></span>假设随机变量<span class="math inline">\(x\)</span>为等到第<span class="math inline">\(\alpha\)</span>件事发生所需的等候时间，概率密度函数<span class="math inline">\((pdf)\)</span>为
+<span class="math display">\[f(x)=\frac{\lambda^{\alpha}}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x},(x&gt;0)\]</span>
+则称<span class="math inline">\(X\)</span>的分布称为<strong>伽马分布</strong>，分布中的参数<span class="math inline">\(\alpha\)</span>为形状参数，<span class="math inline">\(\lambda\)</span>为尺度参数，记为<span class="math inline">\(X \sim \Gamma(\alpha,\lambda)\)</span>或<span class="math inline">\(X \sim \mbox{gamma}(\alpha,\lambda)\)</span>。</p>
+其数学期望和方差分别为
+<span class="math display">\[E(X) = \frac{\alpha}{\lambda}, D(X) = \frac{\alpha}{\lambda^2}.\]</span>
+</div>
+
+</div>
+<div id="逆伽玛分布" class="section level2">
+<h2><span class="header-section-number">2.5</span> 逆伽玛分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-11" class="definition"><strong>Definition 2.5  </strong></span>如果<span class="math inline">\(1/X \sim \mathrm{Gamma}(\alpha,\beta)\)</span>，则称<span class="math inline">\(X\)</span>服从逆伽玛分布，记为 <span class="math inline">\(X \sim \mathrm{IG}(\alpha,\beta)\)</span> 分布，其pdf为：
+<span class="math display">\[f(x|\alpha,\beta)=\frac{\beta^{\alpha}}{\Gamma(\alpha)}x^{-(\alpha+1)}\exp(-\beta/x),\:(\alpha&gt;0,\beta&gt;0)\]</span></p>
+<p>其数学期望为 <span class="math display">\[{\rm E}(X)=\beta/(\alpha-1),\:\alpha&gt;1,\]</span></p>
+<p>其方差为
+<span class="math display">\[{\rm D}(X)=\frac{\alpha^{2}}{(\alpha-1)^{2}(\alpha-2)},\ \alpha&gt;2.\]</span></p>
+<p>If <span class="math inline">\(X \sim \mathrm{IG}(\alpha,\beta)\)</span>, then <span class="math inline">\(1/X \sim \mathrm{Gamma}(\alpha,\beta)\)</span>，</p>
+If <span class="math inline">\(X \sim \mathrm{IG}(\nu/2,\nu s^{2}/2)\)</span>, then <span class="math inline">\(\nu s^{2}/X \sim \chi^{2}(\nu)\)</span>。
+</div>
+
+</div>
+<div id="贝塔beta分布" class="section level2">
+<h2><span class="header-section-number">2.6</span> 贝塔<span class="math inline">\((\beta)\)</span>分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-12" class="definition"><strong>Definition 2.6  </strong></span>一组定义在<span class="math inline">\((0,1)\)</span>区间的连续概率分布，有两个参数<span class="math inline">\(\alpha,\beta&gt;0\)</span>，其概率密度函数<span class="math inline">\((pdf)\)</span>为
+<span class="math display">\[\begin{eqnarray*}
+f(x) &amp;=&amp; \frac{1}{B(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1} \\
+     &amp;=&amp; \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1},(0&lt;x&lt;1)
+\end{eqnarray*}\]</span>
+随机变量<span class="math inline">\(X\)</span>服从参数为<span class="math inline">\(\alpha,\beta\)</span>的<strong>贝塔分布</strong>，记为 <span class="math inline">\(X \sim \mbox{Beta}(\alpha,\beta)\)</span>。</p>
+其数学期望和方差分别为
+<span class="math display">\[\begin{eqnarray*}
+E(X) &amp;=&amp; \frac{\alpha}{\alpha+\beta},\\
+D(X) &amp;=&amp; \frac{\alpha \beta}{(\alpha+\beta)^2(\alpha+\beta+1)}.
+\end{eqnarray*}\]</span>
+</div>
+
+</div>
+<div id="柯西分布" class="section level2">
+<h2><span class="header-section-number">2.7</span> 柯西分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-13" class="definition"><strong>Definition 2.7  </strong></span><strong>柯西分布</strong>是一个数学期望不存在的连续型概率分布，其概率密度函数<span class="math inline">\((pdf)\)</span>为
+<span class="math display">\[\begin{eqnarray*}
+f(x) &amp;=&amp; \frac{1}{\beta \pi}[1+(\frac{x-m}{\beta})^2]^{-1}\\
+     &amp;=&amp; \frac{1}{\pi}\frac{1}{\lambda^2+(x-a)^2},(-\infty&lt;x&lt;\infty)
+\end{eqnarray*}\]</span>
+式中<span class="math inline">\(m\)</span>为定义峰值位置的位置参数，<span class="math inline">\(\beta\)</span>为尺度参数，记为<span class="math inline">\(X \sim \mbox{cauchy}(\rm{location} = m,\rm{scale} = \beta)\)</span>。</p>
+其数学期望和方差不存在。
+</div>
+
+</div>
+<div id="对数正态分布" class="section level2">
+<h2><span class="header-section-number">2.8</span> 对数正态分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-14" class="definition"><strong>Definition 2.8  </strong></span>一个随机变量的对数服从正态分布，则该随机变量服从<strong>对数正态分布</strong>，设<span class="math inline">\(X\)</span>是取值为正数的连续随机变量，若<span class="math inline">\(lnX \sim \mbox{N}(\mu,\sigma^2)\)</span>，<span class="math inline">\(X\)</span>的概率密度函数(pdf)为
+<span class="math display">\[f(x)= \frac{1}{x\sigma\sqrt{2 \pi}}\rm{exp}[\frac{-(lnx-\mu)^2}{2\sigma^2}], (x&gt;0)\]</span>
+记为<span class="math inline">\(X \sim \mbox{Inorm}(\mu,\sigma^2)\)</span>。</p>
+其数学期望和方差分别为
+<span class="math display">\[\begin{eqnarray*}
+E(X) &amp;=&amp; e^{\mu+\frac{\sigma^2}{2}},\\
+D(X) &amp;=&amp; (e^{\sigma^2}-1)e^{2\mu+\sigma^2}.
+\end{eqnarray*}\]</span>
+</div>
+
+</div>
+<div id="韦布尔分布韦伯分布" class="section level2">
+<h2><span class="header-section-number">2.9</span> 韦布尔分布/韦伯分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-15" class="definition"><strong>Definition 2.9  </strong></span><strong>韦伯分布</strong>是一个连续型的概率分布，是可靠性分析和寿命检验的理论基础，其概率密度函数(pdf)为
+<span class="math display">\[f(x)= \frac{\alpha}{\beta}(\frac{x}{\beta})^{\alpha-1}\rm{exp}(\frac{x}{\beta})^{\alpha}, (x&gt;0)\]</span>
+其中，<span class="math inline">\(\alpha\)</span>为比例参数，<span class="math inline">\(\beta\)</span>是形状参数，记为 <span class="math inline">\(X \sim \mbox{Weibull}(\alpha,\beta)\)</span>。</p>
+其数学期望和方差分别为
+<span class="math display">\[\begin{eqnarray*}
+E(X) &amp;=&amp; \alpha \Gamma(1+\frac{1}{\beta}),\\
+D(X) &amp;=&amp; \alpha^2[\Gamma(1+\frac{2}{\beta})-\Gamma(1+\frac{1}{\beta})^2].
+\end{eqnarray*}\]</span>
+</div>
+
+</div>
+<div id="t分布" class="section level2">
+<h2><span class="header-section-number">2.10</span> <span class="math inline">\(t\)</span>分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-16" class="definition"><strong>Definition 2.10  </strong></span>设<span class="math inline">\(X \sim \mbox{N}(0,1)\)</span>,<span class="math inline">\(Y \sim \chi^2(n)\)</span>。 且<span class="math inline">\(X,Y\)</span>独立，则称随机变量<span class="math inline">\(t=\frac{X}{\sqrt{Y/n}}\)</span>服从自由度为<span class="math inline">\(n\)</span>的<span class="math inline">\(t\)</span>分布，记为<span class="math inline">\(t \sim t(n)\)</span>。<strong><span class="math inline">\(t\)</span>分布</strong>又称<strong>学生氏分布</strong>，<span class="math inline">\(t(n)\)</span>分布的概率密度函数(pdf)为
+<span class="math display">\[h(t)= \frac{\Gamma[(n+1)/2]}{\sqrt{\pi n}\Gamma(n+2)}(1+\frac{t^2}{n})^{-(n+1)/2},(-\infty&lt;x&lt;\infty)\]</span></p>
+其数学期望和方差分别为<span class="math display">\[E(X) = 0,D(X) = \frac{n}{n-2}\]</span>
+</div>
+
+</div>
+<div id="一般t分布" class="section level2">
+<h2><span class="header-section-number">2.11</span> 一般<span class="math inline">\(t\)</span>分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-17" class="definition"><strong>Definition 2.11  </strong></span>一个随机变量称为 <span class="math inline">\(T \sim t_{\nu}(\mu,\sigma^{2})\)</span>, 如果 <span class="math inline">\(T=\mu + \sigma Z\)</span>，其中 <span class="math inline">\(Z\)</span> 为标准 <span class="math inline">\(t\)</span>- 分布，其pdf为
+<span class="math display">\[f(t|\nu,\mu,\sigma^{2})=\frac{\Gamma[(\nu+1)/2]}{(\sigma^{2}\nu\pi)^{1/2}\Gamma(\nu/2)}\left[1+\frac{(t-\mu)^{2}}{\nu\sigma^{2}}\right]^{-(\nu+1)/2}\]</span>
+其中<span class="math inline">\(\nu\)</span>为自由度，<span class="math inline">\(\mu\)</span>为位置参数，<span class="math inline">\(\sigma\)</span>为尺度参数。</p>
+<p>其均值为 <span class="math inline">\(E(T)=\mu (\nu&gt;1)\)</span>，其方差为
+<span class="math display">\[Var(T)=\frac{\nu\sigma^{2}}{\nu-2}\ (\nu&gt;2).\]</span></p>
+如果<span class="math inline">\(\mu=0,\sigma^{2}=1\)</span>，则为标准<span class="math inline">\(t\)</span>-分布：<span class="math inline">\(T\sim t(\nu)\)</span>。
+</div>
+
+</div>
+<div id="多元t分布" class="section level2">
+<h2><span class="header-section-number">2.12</span> 多元<span class="math inline">\(t\)</span>分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-18" class="definition"><strong>Definition 2.12  </strong></span>称<span class="math inline">\(p\)</span>维随机向量<span class="math inline">\(\mathbf{y}\sim t_{\nu}(\boldsymbol{\mu},\Sigma)\)</span> 或 <span class="math inline">\(t(\boldsymbol{\mu},\Sigma,\nu)\)</span>，如果
+<span class="math display">\[f(\mathbf{y}) = c |\Sigma|^{-\frac{1}{2}}\left(1+\frac{1}{\nu}(\mathbf{y}-\boldsymbol{\mu})^{T}\Sigma^{-1}(\mathbf{y}-\boldsymbol{\mu})\right)^{-(\nu+p)/2}\]</span>
+其中<span class="math inline">\(\nu\)</span>自由度，<span class="math inline">\(\boldsymbol{\mu}\)</span> 为位置参数，<span class="math inline">\(\Sigma\)</span>为尺度参数（正定矩阵）。</p>
+<p>如果<span class="math inline">\(\nu=1\)</span>，则为哥西(Cauchy)分布。</p>
+其数学期望为<span class="math inline">\(E(Y)=\mu, (\nu&gt;1)\)</span>，其方差为
+<span class="math display">\[D(Y)=\frac{\nu}{\nu-2}\Sigma, (\nu&gt;2).\]</span>
+</div>
+
+</div>
+<div id="卡方chi2分布" class="section level2">
+<h2><span class="header-section-number">2.13</span> 卡方<span class="math inline">\((\chi^2)\)</span>分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-19" class="definition"><strong>Definition 2.13  </strong></span>设<span class="math inline">\(X_1,X_2,\dots,X_n\)</span>是来自总体<span class="math inline">\(\mbox{N}(0,1)\)</span>的样本,则称统计量<span class="math inline">\(\chi^2=X_1^2+X_2^2+ \dots +X_n^2\)</span>服从自由度为<span class="math inline">\(n\)</span>的<strong>卡方分布</strong>，记为<span class="math inline">\(\chi^2 \sim \chi^2(n)\)</span>。自由度是指包含独立变量的个数。其概率密度函数<span class="math inline">\((pdf)\)</span>为
+<span class="math display">\[f(y)= \begin{cases} \frac{1}{2^{n/2}\Gamma(n/2)}y^{n/2-1}e^{-y/2}, &amp; y&gt;0 \\ 0, &amp; \mbox{otherwise} \end{cases}\]</span></p>
+其数学期望和方差分别为<span class="math display">\[E(\chi^2) = n,D(\chi^2) = 2n\]</span>
+</div>
+
+</div>
+<div id="f分布" class="section level2">
+<h2><span class="header-section-number">2.14</span> <span class="math inline">\(F\)</span>分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-20" class="definition"><strong>Definition 2.14  </strong></span>设<span class="math inline">\(U \sim \chi^2(n_1)\)</span>,<span class="math inline">\(V \sim \chi^2(n_2)\)</span>。 且<span class="math inline">\(U,V\)</span>独立,则称随机变量<span class="math inline">\(F=\frac{U/n_1}{V/n_2}\)</span>服从自由度为<span class="math inline">\((n_1,n_2)\)</span>的<strong><span class="math inline">\(F\)</span>分布</strong>，记为<span class="math inline">\(F \sim \mbox{F}(n_1,n_2)\)</span>,其概率密度为
+<span class="math display">\[f(y)= \begin{cases} \frac{\Gamma[(n_1+n_2)/2] (n_1/n_2)^{n_1/2}y^{(n_1/2)^{-1}}}{\Gamma(n_1/2)\Gamma(n_2/2)[1+(n_1y/n_2)]^{(n_1+n_2)/2}} &amp; y&gt;0 \\ 0, &amp; \mbox{otherwise} \end{cases}\]</span></p>
+其数学期望和方差分别为
+<span class="math display">\[\begin{eqnarray*}
+E(X) &amp;=&amp; \frac{n_2}{n_2-2},\\
+D(X) &amp;=&amp; \frac{2n_2^2(n_1+n_2-2)}{n_1(n_2-2)^2(n_2-4)},(n_2&gt;4).
+\end{eqnarray*}\]</span>
+</div>
+
+</div>
+<div id="拉普拉斯分布" class="section level2">
+<h2><span class="header-section-number">2.15</span> 拉普拉斯分布</h2>
+
+<div class="definition">
+<span id="def:unnamed-chunk-21" class="definition"><strong>Definition 2.15  </strong></span>如果随机变量<span class="math inline">\(X\)</span>的密度函数(pdf)为
+<span class="math display">\[f(x)=  \frac{1}{2 \lambda}\rm{exp}({-\frac{|x- \mu|}{\lambda}})\]</span>
+其中<span class="math inline">\(\lambda,\mu\)</span>为常数，且<span class="math inline">\(\lambda&gt;0\)</span>,则称<span class="math inline">\(X\)</span>服从参数为<span class="math inline">\(\mu\)</span>（位置参数）,<span class="math inline">\(\lambda\)</span>（尺度参数）的<strong>拉普拉斯分布</strong>，记为<span class="math inline">\(X \sim \mbox{La}(\mu,\lambda)\)</span>。<br />
+其数学期望和方差分别为<span class="math inline">\(E(X) = \mu,D(X) = 2\lambda^2\)</span>.
+</div>
+
+</div>
+<div id="瑞利分布" class="section level2">
+<h2><span class="header-section-number">2.16</span> 瑞利分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-22" class="definition"><strong>Definition 2.16  </strong></span>如果随机变量<span class="math inline">\(X\)</span>的密度函数(pdf)为
+<span class="math display">\[X \sim f(x)= \begin{cases} \frac{x}{\sigma^2} \rm{exp}-\frac{x^2}{(2\sigma^2)}, &amp; x&gt;0 \\ 0, &amp; \mbox{otherwise} \end{cases}\]</span>
+则<span class="math inline">\(X\)</span>的分布称为<strong>瑞利分布</strong>。</p>
+其数学期望和方差分别为
+<span class="math display">\[\begin{eqnarray*}
+E(X) &amp;=&amp; \sqrt{\frac{\pi}{2}}\sigma,\\
+D(X) &amp;=&amp; \frac{4- \pi}{2}\sigma^2.
+\end{eqnarray*}\]</span>
+</div>
+
+</div>
+</div>
+<div id="常用多维分布" class="section level1">
+<h1><span class="header-section-number">3</span> 常用多维分布</h1>
+<div id="多项分布" class="section level2">
+<h2><span class="header-section-number">3.1</span> 多项分布</h2>
+
+<div class="definition">
+<span id="def:unnamed-chunk-23" class="definition"><strong>Definition 3.1  </strong></span>假设进行<span class="math inline">\(n\)</span>次独立重复试验，每次试验中有<span class="math inline">\(k\)</span>个可能的结果，各个结果发生的概率分别为 <span class="math inline">\(p_{1},...,p_{k}\)</span> (其中<span class="math inline">\(p_{i} \ge 0, \sum_{i=1}^{k}p_{i}=1\)</span>)。记 <span class="math inline">\(X_{i}\)</span> 为第<span class="math inline">\(i\)</span>个结果出现的次数，则称随机向量<span class="math inline">\(\boldsymbol{X}=(X_{1},X_{2},\dots,X_{k})^{T}\)</span> 服从多项分布(Multinomial distribution)，参数为 <span class="math inline">\(n\)</span>和 <span class="math inline">\(\boldsymbol{p}=(p_{1},p_{2},\dots,p_{k})^{T}\)</span>，记为<span class="math inline">\(\boldsymbol{X} \sim \mathrm{Multinom}(n,\boldsymbol{p})\)</span>，其联合概率函数(pmf)为
+<span class="math display">\[P(X_{1}=x_{1},\dots,X_{k}=x_{k})={n \choose x_{1}x_{x}\cdots x_{k}}\ p_{1}^{x_{1}}p_{2}^{x_{2}}\dots p_{k}^{x_{k}}, \, (x_i \ge 0, \sum_{i=1}^{k}x_{i}=n).\]</span>
+</div>
+
+<p>多项分布<span class="math inline">\(\mathrm{Multinom}(n,\boldsymbol{p})\)</span>具有如下性质：</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\({\rm E}(\boldsymbol{X})=n\boldsymbol{p}\)</span>, 即 <span class="math inline">\({\rm E}(X_{i})=np_{i} \, (i=1,2,\dots,k)\)</span></p></li>
+<li><p><span class="math inline">\(\boldsymbol{X}\)</span>的协方差矩阵<span class="math inline">\(\Sigma\)</span> 是对称矩阵，其对角线元素为
+<span class="math display">\[\sigma_{i}^{2}=np_{i}(1-p_{i}),\]</span>
+非对角线元素为
+<span class="math display">\[{\rm Cov}(X_{i},X_{j})=-np_{i}p_{j} \, (i\ne j).\]</span></p></li>
+<li><p><span class="math inline">\(\boldsymbol{X}\)</span>的相关系数矩阵元素为
+<span class="math display">\[{\rm Corr}(X_{i},X_{j})=\frac{-np_{i}p_{j}}{\sqrt{np_{i}(1-p_{i})\cdot np_{j}(1-p_{j})}}=-\sqrt{\frac{p_{i}p_{j}}{q_{i}q_{j}}}\]</span></p></li>
+<li><p>记<span class="math inline">\(\boldsymbol{X}_{(k-1)}=(X_{1},X_{2},\dots,X_{k-1})^{T}\)</span>，则 <span class="math inline">\(\boldsymbol{X}_{(k-1)} \sim \mathrm{Multinom}(n,\boldsymbol{p}_{(k-1)})\)</span>，其中 <span class="math display">\[\boldsymbol{p}_{(k-1)}=(p_{1},\dots,p_{k-2},p_{k-1}+p_{k})^{T}.\]</span></p></li>
+</ol>
+<p>特别, <span class="math inline">\(X_{i}\sim\text{Bin}(n,p_{i}).\)</span></p>
+</div>
+<div id="多元正态分布" class="section level2">
+<h2><span class="header-section-number">3.2</span> 多元正态分布</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-24" class="definition"><strong>Definition 3.2  </strong></span><strong>多元正态分布</strong>亦称为<strong>多变量高斯分布</strong>。它是一元正态分布向多维的推广。<br />
+<span class="math inline">\(N\)</span>维随机向量<span class="math inline">\(\textbf{X}=[X_1,\dots,X_N]^T\)</span>如果服从多元正态分布，必须满足下面的三个等价条件：</p>
+<p><span class="math inline">\((1)\)</span>任何线性组合<span class="math inline">\(Y=a_1X_1+\dots+a_NX_N\)</span>服从正态分布。</p>
+<p><span class="math inline">\((2)\)</span>存在随机向量<span class="math inline">\(\textbf{Z}=[Z_1,\dots,Z_M]^T\)</span>（它的每个元素服从独立标准正态分布）， 向量<span class="math inline">\(\boldsymbol{\mu}=[\mu_1, \dots, \mu_N]^T\)</span> 及 <span class="math inline">\(N \times M\)</span>矩阵<span class="math inline">\(A\)</span>满足<span class="math inline">\(\textbf{X}=A\textbf{Z}+\boldsymbol{\mu}\)</span>。</p>
+<p><span class="math inline">\((3)\)</span>存在<span class="math inline">\(\boldsymbol{\mu}\)</span>和一个对称半正定阵<span class="math inline">\(\boldsymbol{\Sigma}\)</span>满足<span class="math inline">\(\textbf{X}\)</span>的特征函数：
+<span class="math display">\[\varphi_X(\boldsymbol{\mu};\boldsymbol{\mu},\boldsymbol{\Sigma})=\rm{exp}(i\boldsymbol{\mu}^T\boldsymbol{\mu}-\frac{1}{2}\boldsymbol{\mu}^T\boldsymbol{\Sigma}\boldsymbol{\mu})\]</span><br />
+如果一个<span class="math inline">\(p\)</span>维随机向量<span class="math inline">\(\textbf{X}\)</span>服从<strong>多元正态分布（多元高斯分布）</strong>，其联合概率密度函数为
+<span class="math display">\[f(\textbf{x})=\frac{1}{(2\pi)^{p/2}|\boldsymbol{\Sigma}|^{1/2}}exp\{-\frac{1}{2}(\textbf{x}-\boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1}(\textbf{x}-\boldsymbol{\mu})\},(\boldsymbol{\Sigma}&gt;0)\]</span>
+其中<span class="math inline">\(\boldsymbol{\mu}\)</span>是均值向量，<span class="math inline">\(\boldsymbol{\Sigma}\)</span>是对称正半定矩阵，记为<span class="math inline">\(\textbf{X} \sim N_p(\boldsymbol{\mu},\boldsymbol{\Sigma})\)</span>。</p>
+其数学期望和方差分别为<br />
+<span class="math display">\[E(\textbf{X})=\boldsymbol{\mu}, D(\textbf{X})=\boldsymbol{\Sigma}.\]</span>
+</div>
+
+</div>
+<div id="威希特分布wishart分布" class="section level2">
+<h2><span class="header-section-number">3.3</span> 威希特分布（Wishart分布）</h2>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-25" class="definition"><strong>Definition 3.3  </strong></span>假设<span class="math inline">\(\textbf{X}_{(\alpha)}(\alpha=1,2,...,n)\)</span>相互独立，且<span class="math inline">\(\textbf{X}_{(\alpha)} \sim N_p(0,\boldsymbol{\Sigma})\)</span>,则随机<span class="math inline">\(p \times p\)</span>矩阵 <span class="math inline">\(\textbf{W} = \sum_{i=1}^{p} x_i x_i^T\)</span> 服从自由度为<span class="math inline">\(n\)</span>的<strong>威希特分布</strong>，记为<span class="math inline">\(\textbf{W} \sim W_p(n,\boldsymbol{\Sigma})\)</span>。其概率密度函数为
+<span class="math display">\[f(\textbf{W})=\frac{1}{2^{\frac{np}{2}}|\boldsymbol{\Sigma}|^{\frac{n}{2}}\boldsymbol{\Gamma}_p(\frac{n}{2})}|\textbf{W}|^{\frac{n-p-1}{2}}\rm{exp}\{-\frac{1}{2}\rm{tr}(\boldsymbol{\Sigma}^{-1}\textbf{W})\}\]</span></p>
+其数学期望和方差分别为<br />
+<span class="math display">\[E(\textbf{W})=n\boldsymbol{\Sigma},\]</span>
+<span class="math display">\[D(w_{ij})=n(\sigma_{ij}^2+\sigma_{ii}\sigma_{jj})\]</span>
+对于<span class="math inline">\(n \ge p\)</span>的矩阵<span class="math inline">\(\textbf{W}\)</span>,如果<span class="math inline">\(\boldsymbol{\Sigma}\)</span>是可逆的,那么它也是可逆的。当<span class="math inline">\(p=\boldsymbol{\Sigma}=1\)</span>，那么这个分布是一个自由度为<span class="math inline">\(n\)</span>的<span class="math inline">\(\chi^2\)</span>分布。
+</div>
+
+</div>
+<div id="t2分布hotelling-t2-分布" class="section level2">
+<h2><span class="header-section-number">3.4</span> <span class="math inline">\(T^2\)</span>分布(Hotelling <span class="math inline">\(T^2\)</span> 分布)</h2>
+
+<div class="definition">
+<span id="def:unnamed-chunk-26" class="definition"><strong>Definition 3.4  </strong></span>假设<span class="math inline">\(\textbf{W} \sim W_p(n,\boldsymbol{\Sigma})\)</span>，<span class="math inline">\(\textbf{X} \sim N_p(0,\boldsymbol{\Sigma})\)</span>，<span class="math inline">\(n \ge p\)</span>，<span class="math inline">\(\boldsymbol{\Sigma}&gt;0\)</span>, <span class="math inline">\(\textbf{W}\)</span>与<span class="math inline">\(\textbf{X}\)</span>相互独立,则随机变量
+<span class="math display">\[T^2=n\textbf{X}^T\textbf{W}^{-1}\textbf{X}\]</span>
+所遵从的分布为第一自由度为<span class="math inline">\(p\)</span>,第二自由度为<span class="math inline">\(n\)</span>的<strong><span class="math inline">\(T^2\)</span>分布</strong>,记为<span class="math inline">\(T^2 \sim T^2(p,n)\)</span>。<span class="math inline">\(T^2\)</span>分布可转化为<span class="math inline">\(F\)</span>分布,其关系可以表示为:
+<span class="math display">\[\frac{n-p+1}{pn}T^2(p,n)=F(p,n-p+1)\]</span>
+</div>
+
+</div>
+<div id="wilks分布" class="section level2">
+<h2><span class="header-section-number">3.5</span> Wilks分布</h2>
+
+<div class="definition">
+<span id="def:unnamed-chunk-27" class="definition"><strong>Definition 3.5  </strong></span>假设<span class="math inline">\(\textbf{W}_1 \sim \textbf{W}_p(n_1,\boldsymbol{\Sigma})\)</span>, <span class="math inline">\(\textbf{W}_2 \sim \textbf{W}_p(n_2,\boldsymbol{\Sigma})\)</span>, <span class="math inline">\(\boldsymbol{\Sigma}&gt;0\)</span>, <span class="math inline">\(n_1&gt;p\)</span>,<span class="math inline">\(\textbf{W}_1\)</span>与<span class="math inline">\(\textbf{W}_2\)</span>相互独立, 则
+<span class="math display">\[\Lambda=\frac{\textbf{W}_1}{\textbf{W}_1+\textbf{W}_2}\]</span>
+服从维度为<span class="math inline">\(p\)</span>, 第一自由度为<span class="math inline">\(n_1\)</span>, 第二自由度为<span class="math inline">\(n_2\)</span>的<strong><span class="math inline">\(Wilks\Lambda\)</span>分布</strong>, 记为<span class="math inline">\(\Lambda \sim \Lambda(p,n_1,n_2)\)</span>。
+</div>
+
+</div>
+</div>
