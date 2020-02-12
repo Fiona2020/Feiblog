@@ -1,10 +1,10 @@
 ---
-abstract: The simulation aims to fit the neuron response elicited by stimulation by dividing them into slightly different stimuli. The difference can be site, direction of motion, distance between stimuli and participant or color and so on.
+abstract: We have developed a wireless epidural electrical stimulation system to control rat movements by providing stimulus with adjustable parameters on different epidural motor cortex areas. A hand-made multi-channel electrode array is implanted above the endocranium of the rat. A mini-size, light-weighted and multi-channel stimulus controller is carried on the rat’s back, controlling by PC wirelessly. Different specific actions can be evoked in vivo experiments.
 all_day: false
 authors: []
-date: "2019-09-18T13:00:00Z"
-date_end: "2019-09-18T15:00:00Z"
-event: Lab Presentation
+date: "2019-06-20"
+#date_end: "2019-09-18T15:00:00Z"
+event: Big assignment
 # event_url: https://www.asms.org/publications/journal-of-the-american-society-for-mass-spectrometry-group/news-detail/2016/07/22/highlights-from-the-64th-annual-asms-conference
 featured: false
 image:
@@ -15,29 +15,18 @@ image:
 #  icon_pack: fab
 #  name: Follow
 #  url: https://twitter.com/georgecushen
-location: University of Wisconsin-Madison, United States
+location: Tsinghua University, China
 math: true
 projects:
 - internal-project
-publishDate: "2019-09-18T00:00:00Z"
+publishDate: "2019-06-20"
 #slides: example
-summary: A simulation aims to fit the neuron response elicited by dividing them into slightly different stimuli.
+summary: 
 tags: []
-title: ppt
+title: Rat Trolius - An epidural stimulation system for rats
 url_code: ""
 url_pdf: "files/Poster.pdf"
 url_slides: "presentation.pdf"
 url_video: ""
 ---
 
-{{% alert note %}}
-Click on the **Slides** button above to view the built-in slides feature.
-{{% /alert %}}
-
-Slides can be added in a few ways:
-
-- **Create** slides using Academic's [*Slides*](https://sourcethemes.com/academic/docs/managing-content/#create-slides) feature and link using `slides` parameter in the front matter of the talk file
-- **Upload** an existing slide deck to `static/` and link using `url_slides` parameter in the front matter of the talk file
-- **Embed** your slides (e.g. Google Slides) or presentation video on this page using [shortcodes](https://sourcethemes.com/academic/docs/writing-markdown-latex/).
-
-Further talk details can easily be added to this page using *Markdown* and $\rm \LaTeX$ math code.
