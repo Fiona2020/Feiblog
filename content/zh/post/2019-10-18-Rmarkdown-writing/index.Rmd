@@ -1,0 +1,400 @@
+---
+title: "如何用 R Markdown 写学术文档？"
+author: Fiona
+#date:  "`r Sys.Date()`"
+date: '2019-10-18'
+slug: ''
+categories:
+  - R
+tags:
+  - Rmarkdowm
+image:
+  caption: ''
+  focal_point: ''
+output: 
+  blogdown::html_page:
+    toc: true
+    toc_depth: 2
+    number_sections: TRUE
+ #   toc_float: TRUE
+    indent: 2
+citation_package: natbib
+bibliography: [bib/packages.bib,bib/book.bib]
+#csl: bib/elsevier-vancouver.csl
+#csl: bib/chinese-gb7714-1987-numeric.csl
+bibli0-style: apalike
+link-citations: yes
+colorlinks: yes
+#lot: yes
+#lof: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,           # show code
+  warning = FALSE,       # don't show warnings
+  message = FALSE,       # don't show messages (less serious warnings)
+  cache = FALSE,         # set to TRUE to save results from last compilation
+  # pdf.options(family="GB1") #生成PDF图时显示中文
+  fig.align = 'center',  # center figures
+  out.width = '75%',     # Set figure size to 75% of textline width
+  tidy = TRUE,
+  fig.asp = .75          # width-height ratio 
+)
+# Load libraries you need to use
+  library(tidyverse) 
+  library("bookdown")
+  library("bookdownplus")
+  set.seed(2018)         # make random results reproducible
+```
+
+介绍
+==========================================================================
+
+本文主要目的是介绍如何用R Markdown撰写学术类型的文档，权当资料整理供参考。
+
+主要内容包括：
+
+（一）简单介绍R Markdown及需安装的软件和设置；
+
+（二）简单的学术类文档（结构简单，不需要交叉引用，如理工科课程作业等）；
+
+（三）完整的学术类文档（结构完整，篇幅不长，但需要交叉引用，如学术论文等）^[本文就是这种类型的文档]；
+
+（四）撰写长篇幅的学术类文档（全文需分章节，篇幅较长，需要跨章节的交叉引用，如书籍、学位论文等）；
+
+（五）中文参考文献的样式；
+
+（六）介绍R Markdown的具体用法。
+
+## 什么是R Markdown？
+
+R Markdown [@R-rmarkdown] 是结合 Markdown 和 R[@R-base]语言的写作软件。
+
+Markdown是轻量级、纯文本、超简单的书写格式。
+
+R Markdown可以做什么？
+
+  - 语法简单。作者基本上无需关心排版问题，只要专心写作就可以了。
+  - 计算结果动态生成。作者不必手动拷贝粘贴代码结果或者生成的表格、图片等。
+  - 易于修改。写作过程中如需修改某处，全文相应变动会自动生成，包括软件运行的结果（图形等）。
+  - 比Word更美观，比LaTeX更易用。
+  - 方便地插入目录、图表、脚注等。Bookdown扩展功能可以交叉引用、索引。
+  - 方便地插入数学公式、参考文献、R代码。
+  - 可以生成漂亮的pdf、word、epub、网页和幻灯片等多种文件格式。
+  - 写作及结果具有可重复性。  
+  - 支持多语言，包括 R, C/C++, Python, Fortran, Julia, Shell scripts和 SQL等。
+  - R 和 Markdown 都是开源免费的。
+
+R Markdown使得数据分析代码可以与文档混编，具体语法请参看我另一个博客[R Markdown 简介](https://andrewwang.netlify.com/post/Intr-Rmd/)。
+
+下面是回归模型的简单例子。在R中，回归模型可以用非常简单的一行代码搞定：`lm(y~x, data)`，计算结果可以在正文直接调用。
+
+```{r}
+options(digits = 4)
+fit = lm(dist ~ speed, data = cars)
+coef(summary(fit))
+b = coef(fit)
+```
+上面回归方程中的斜率可以用````r ''`r b[2]```调用，斜率为$b=`r b[2]`$, 完整的回归方程为：
+$$ Y = `r b[1]` + `r b[2]`x$$
+
+可用如下代码极为简单地做出散点图和回归直线：
+
+```{r scatter, fig.cap='cars数据散点图以及回归直线。'}
+plot(cars, pch = 19)
+abline(fit, col = 'red')
+```
+
+## 搭建系统环境
+
+首先需要下载并安装R、RStudio和Texlive等软件。
+
+**（一）下载并安装R**
+
+到如下网址下载最新版R并安装： https://www.r-project.org/ 。一般默认安装即可，不过，根据Xie Yihui的经验，Windows中安装R如下注意几点会更好^[https://bookdown.org/yihui/r-ninja/setup.html#configure-r]：    
+  - 把默认安装目录中的R版本号去掉，比如R默认装在C:/Program Files/R/R-3.5.3/，不要接受这个结果，把它改成C:/Program Files/R/，以后升级软件仍然安装在这个文件夹；      
+  - 不能安装在中文目录下；    
+  - 用自定义方式安装。不要安装翻译文件。          
+  - 配置`.Renviron`文件。这个文件是为R自身设置一些环境变量的，这里面的环境变量仅仅对R有效，不改变操作系统的设置。`.Renviron`文件放在用户目录下，也就是~/。如果文件不存在，可以用如下命令自动创建: `file.edit('~/.Renviron')`。这个文件可以直接打开编辑，推荐放一个环境变量在里面，就是`R_LIBS_USER="~/R"`，它指定R的软件包安装目录在`~/R`。重启R，以后安装R包就优先安装到`~/R`目录下。因为这个目录是固定的，所以即使将来升级R版本，R也会使用这个目录装包，以后再也不必更新关于包的配置。  
+
+**（二）下载并安装 RStudio**
+
+ 到如下网址下载最新版RStudioR并安装：https://www.rstudio.com/。
+
+**RStudio的基本设置**
+
+首先对RStudio进行正确的设置：
+ 
+- 打开 `Tools` => `global options`，然后  
+- 点击`sweave`，在`weave rnw files using`选择 **knitr**  
+- 在`Typeset LaTex into PDF using` 选择**XeLaTex**  
+- 在`Code => Saving => Default text Encoding` 选择 `UTF-8`    
+
+至此，已经可以完美运行R和纯英文的RMarkdown了。不过，如果要用中文撰写RMarkdown文档，则需要安装LaTeX。
+
+最好每项工作都单独建立一个文件夹，把性质相同的文档归到同一个子目录（比如要插入的图形、需调用的参考文献、设置的格式和参数等等）。然后建立RStudio项目(project)，每次开始都打开这个project，这样项目的一切材料都会齐备，RStudio的工作目录不会搞乱。
+
+**（三）下载并安装 Texlive2019**
+
+到如下网址下载Texlive2019：https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/ ，下载文件 texlive2019-20190410.iso（3.3G），用解压缩软件Winrar解压，运行install-tl-windows.bat默认安装。软件很大，一般电脑安装时间要一个多小时。不过文件很齐全，安装后，就可以轻松驾驭著名的科技论文写作神器LaTeX了。也可以安装Latex前端LyX（https://www.lyx.org） ，写paper非常好用。
+
+有时用`xelatex`编译会很慢，往往是中文字体缓存刷新问题。
+解决办法：    
+  1. 清空 `C:\texlive\2019\texmf-var\fonts\cache` 中的文件；    
+  2. 用管理员命令运行`fc-cache -r -v`重新生成字体缓存。
+
+**（四）安装常用软件包**
+
+首先安装软件包 `bookdown`[@R-bookdown]及其相依软件包，R Markdown写作所需的包基本上就齐了。 `bookdown`包括了rmarkdown [@R-rmarkdown]、knitr [@R-knitr]、 rticles等，如果有包缺失，运行时会提示安装。
+
+bookdownw网站：https://bookdown.org/， 可以安装稳定版: `install.packages('bookdown')`，也可以安装开发版: `devtools::install_github('rstudio/bookdown')`
+
+其次建议安装软件包 `tidyverse`，它包含了数据分析常用的几个核心包，包括:
+
+  - `ggplot2` 数据可视化
+  - `dplyr` 数据变换和操作
+  - `tidyr` 数据整理
+  - `readr` 数据输入
+  - `purrr` 函数编程
+  - `tibble` 新的数据框格式
+  - `stringr` 简单易用的字符串工具集
+  - `forcats` 用于处理分类变量的因子(Factor)
+
+
+用 R Markdown 写简单文档
+==========================================================================
+
+所谓“简单”学术文档，是指满足了学术文档的基本要求，包括标题、公式、图表、参考文献以及自动编号等，但是不能交互引用。这种情况下 R Markdown 具有独特优势，可以直接上手，输出结果丰富。
+
+(1) 新建一个R Markdown 文档。在打开界面可输入题目和作者姓名，输出格式可选择`html`，`pdf` 或 `word`。
+
+(2) 简单设置。点击`Knit`旁边的齿轮按钮，在`Output Options`可做更多选择，比如可勾选`Include table of contents`，表示建立目录。勾选`Number section headings`表示章节题目包含顺序数字。在`Figures`勾选`Render figure captions`表示图形会显示标题并自动排序。
+
+(3) 结果输出。
+
+  - 如果文档是**纯英文**的，可以通过 `knit` 转为 `html`，`pdf` 或 `word` 任何格式都没问题。不过，如果你用中文Windows，则日期最好用 ```` "` r Sys.Date() `" ```` 代替或直接输入英文日期，否则可能会乱码。注意：`pdf`文档中不能出现任何中文字符，包括标点符号。
+  - 如果文档是**中文**的，则
+    + 转 `html` 没有任何问题。
+    + 转`word`，一定要在开始时指定，或在文档的`output:`下面指明`word_document:`，否则标题和日期会是乱码。
+    + 中文文档不能直接转`pdf`，需要加装软件包并正确设置。
+  
+ 一般文档开头（称为`yaml`）是这样的：
+
+````markdown
+---
+title: "Title"
+author: "Your Name"
+date:  "`r Sys.Date()`"
+output: 
+  html_document:                           #文档格式为html
+    fig_caption: yes                       #包括图形标题
+    number_sections: yes                   #章节数字顺序
+    toc: yes                               #显示目录
+    toc_depth: 3                           #三级目录
+    toc_float: True                        #目录作为侧边栏
+  pdf_document:                            #文档格式为pdf
+    fig_caption: yes
+    keep_tex: yes
+    latex_engine: xelatex
+    number_sections: yes
+    toc: yes
+  word_document:                           #文档格式为word
+    fig_caption: yes
+    toc: yes
+bibliography: reference.bib                #参考文献文件名
+bibli0-style: apalike                      #参考文献格式
+link-citations: yes                        #参考文献链接
+colorlinks: yes                            #链接颜色
+#lot: yes                                  #表格列表
+#lof: yes                                  #图形列表
+---
+````
+
+ **中文`pdf`文档**
+  
+  首先要确保已经安装`bookdown`，因为中文pdf文档需要用到`rticles`，`tynytex`等软件包。中文pdf文档还需要用到`LaTeX`套件，如`Texlive`，`MikTex`等。安装`bookdown`后，这些套件是否还需要安装，我不能确定。
+  
+  创建简单的中文`pdf`文档，很简单：打开 R Markdown时，选择 `From Template`，从模版中选择 `CTex Documents`即可。
+
+
+用 R Markdown 写学术文档
+==========================================================================
+
+前面介绍的R Markdown文档是没有**交叉引用**功能的，即公式、图形、表格或章节之间在正文不能交互引用。
+
+为了实现交叉引用功能，可以扩展到`bookdown`。但是`bookdown`需要建立一个文件夹，里面有一堆文件夹和文件，还要每章（节）单独写一个`Rmd`文件，有点复杂。除非你写书或硕博毕业论文，一般不太长的文档或杂志论文没有必要。解决办法是把`bookdown`用单个文件的格式[@R-bookdown]，也具有交互引用功能。
+
+一个合适的设置需要满足：
+
+  (1) 标题、图形、表格、公式等可以自动编号，可以交互引用；
+  (2) 一个文档可以输出html、pdf和word等多种格式；
+  (3) 参考文献可以方便地修改样式。
+
+我的 `yaml`是这样的（满足以上三个条件）：
+
+
+````markdown
+---
+title: "如何用 R Markdown 写学术文档？"
+author: "Shujia Wong"      
+#date:  "`r Sys.Date()`"
+date: "`r format(Sys.time(), '%Y年%m月%d日')`"
+#geometry: left = 3.18cm, right = 3.18cm, top = 2.0cm, bottom = 2.0cm
+#fontsize: 12pt
+output: 
+  bookdown::gitbook:
+    config:
+      toc: 
+        collapse: subsection
+    self.contained: yes
+    table_css: TRUE
+    number_sections: TRUE
+    split_by: none
+  bookdown::pdf_document2: 
+    keep_tex: yes
+    dev: "cairo_pdf" # Allow Chinese figure title and labels
+    latex_engine: xelatex # for chinese
+    template: template/template_article_zh.tex   #latex template
+    #pandoc_args:  --top-level-division=chapter
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+    toc_depth: 3
+    #toc_unnumbered: no
+    #toc_appendix: yes
+    quote_footer: ["\\begin{flushright}", "\\end{flushright}"]
+  bookdown::html_document2: 
+    css: bib/style.css
+    fig_caption: yes
+    theme: readable
+    #highlight: monochrome
+    number_sections: yes
+    toc: yes
+    toc_depth: 3
+    toc_float: True #目录作为侧边栏
+  bookdown::word_document2: 
+    reference_docx: template/reference_word.docx
+    fig_caption: yes
+    toc: yes
+    toc_depth: 3
+citation_package: natbib
+bibliography: [bib/packages.bib,bib/book.bib]
+#csl: bib/chinese-gb7714-1987-numeric.csl
+bibli0-style: apalike
+link-citations: yes
+colorlinks: yes
+#lot: yes
+#lof: yes
+---
+````
+
+注意，要在工作目录中创建两个子目录：
+
+- `template`子目录，存放样板文档。`template_article_zh.tex`来自`bookdownplus`[@R-bookdownplus]，并且稍作修改。`reference_word.docx`是本人制作，你可以根据需要修改`word`的`样式`。
+- `bib`子目录，存放参考文献（`.bib`）和式样文件(`.csl`)。
+
+用Bookdown写书或长文
+==========================================================================
+
+## 用bookdown写中英文书籍
+
+长篇文章（书籍、毕业论文）需要分章节以及交叉引用，结构复杂，简单的一个R Markdown文档可能不能胜任。
+
+一本 `bookdown` 书含有多个章节，每个章节写在单独的`.Rmd` 文件，起始部分为该章节标题[@R-bookdown]。 
+
+如果含有中文，所有 R Markdown 文档都必须用 UTF-8编码保存。
+
+**具体用法**：
+
+- 下载模板：在模板下载网页（github）的右上角，点击`Clone or download` 下载压缩文件，解压到工作目录。
+  - 英文模版 https://github.com/rstudio/bookdown-demo。
+  - 中文模版https://github.com/yihui/bookdown-chinese
+- 用RStudio打开文件`bookdown-demo.Rproj`或`bookdown-chinese.Rproj`，然后在右上角点击`Build`，下一行`Build Book`，然后选择相应格式 (pdf,epub,word,gitbook) 即可得到模板文件。
+- 根据自己需要修改相关文件，保存。运行`Build Book`即可得到你自己的书籍。
+
+中文可输出 `gitbook`网页、`pdf`, `word` 和 `epub`。
+
+英文的demo里默认没有 `word`格式的输出，要自行在`_output.yml`里添加一行：
+
+`bookdown::word_document2: default` 
+
+更多说明请参看 Xie Yihui（2018）：*bookdown: Authoring Books and Technical Documents with R Markdown* <https://bookdown.org/yihui/bookdown/>
+
+
+## 用 Bookdownplus 模版快速上手
+
+Bookdownplus[@R-bookdownplus] 对Bookdown进行了重新配置，制作了多种文本的模版，包括中、英文论文，北大、浙大等高校毕业论文等，大大方便了各种类型的写作应用。
+
+### 安装调用
+
+软件包bookdownplus 可参看 `CRAN`  https://cran.r-project.org/web/packages/bookdownplus/index.html。
+也可以到`Github` https://github.com/pzhaonet/bookdownplus 去下载相关文件。
+
+安装稳定版: `install.packages('bookdownplus')` 
+
+或开发版: `devtools::install_github('pzhaonet/bookdownplus')`
+
+调用软件包：`require(bookdownplus)`
+
+查看所有可用模版：`get_template()`， 其中 `article` 是英文版学术论文模版，`article_zh` 是中文学术论文模版，支持双语标题、作者、摘要、关键词。`pku_zh` 是北京大学毕业论文模版，`ucas_zh`是中国科学院大学学位论文模版，`zju_zh` 是浙江大学毕业论文模版。
+
+### 用 Bookdownplus撰写书籍
+
+**步骤**：
+
+  (1) 产生模版。首先把RStudio的工作目录设置在一个空白的文件夹（`Session -> Set Working Directory -> Choose Directory`，也可以通过快捷键选取 `Ctrl + Shift + H`）。
+  执行
+          `library("bookdownplus")`
+          `bookdownplus(template = "article_zh",rproj=TRUE)`  
+其中 `rproj=TRUE` 必须加上，否则不会产生`bookdownplus.Rproj`文件。
+  
+  (2) 在`index.Rmd`修改题目、作者等，在`body.Rmd` 撰写正文。注意这里一级标题竟然要用`##`，有点不明白。
+  
+  (3) 创建你的书籍。在RStudio中打开`bookdownplus.Rproj`，在右上角点击`Build`，下一行`Build Book`，然后选择相应格式 (pdf,epub,word,gitbook) 即可，你的书籍在文件夹 `_book` 里面。
+  
+其它格式（书籍、毕业论文、杂志文章等）类似，请自行测试。
+
+
+修改中文参考文献样式
+================================================================
+
+不管是 Bookdown 还是 Bookdownplus，默认参考文献的引用格式都是 apalike，引用格式是`作者-年`，不符合gb7714中文标准。
+
+**如何把参考文献修改为中文标准格式？**
+
+## 一般学术文档修改
+
+(1) 到 csl样式库 https://www.zotero.org/styles 查看合适的样式（有几百种），可以到 https://github.com/citation-style-language/styles 去下载源文件(Raw)，比如 `chinese-gb7714-1987-numeric.csl`，放在**工作目录**下的`bib`子目录。
+(2) 样式的调用：注释掉 `#bibli0-style: apalike`， 然后增加一行即可：  
+   `csl: bib/chinese-gb7714-1987-numeric.csl`
+   
+为了试试中文的引用，我通过Zotero产生一个bibtex格式中文文献（注意自动生成的中文`key`显示为`--`，需要自行修改），例如[@ke2017]。
+
+## 修改 Bookdownplus
+
+- 把`chinese-gb7714-1987-numeric.csl`放在*项目所在目录*。
+- 在文件`index.rmd` 中:
+  - 修改 `natbib` 为 `none`；
+  - 把`pandoc_args:` 后面内容替换为：`[ "--top-level-division=chapter", "--csl","chinese-gb7714-1987-numeric.csl" ]`;  
+  - 删除或注释掉文档`index.Rmd` 中的`biblio-style: apalike`;
+- 在`body.Rmd` 的最后增加一行：` ## 参考文献 {-} `。
+
+## 修改Bookdown任意样式
+
+- 在文件`_output.yml` 中修改 `citation_package: none`；
+- 在文件`_output.yml` 各种格式(gitbook, pdf_book, epub_book) 中增加 `pandoc_args: [ "--csl","your-csl-file.csl" ]`；
+- 删除或注释掉文档`index.Rmd` 中的`biblio-style: apalike`；
+- 把文件`08-references.Rmd` 首行改为: `# 参考文献 {-}`（否则参考文献不出现）。
+
+# 总结
+
+本文简单介绍了如何用R Markdown写一般性研究短文（标题、公式、图表、参考文献等都能自动排版和编号）、中等篇幅的研究论文（可以交互引用）和长篇幅的研究文章（书籍、研究报告、学位论文等）等。
+
+用R Markdown写研究性文章最大的优点是可以把数据分析的过程（不局限于R，也可以是Python等）和文章文本结合起来，写作过程中可以方便地进行修改，保持文章结果的可重复性。
+
+LaTeX的一些前端（如LyX）也可以做到R运行与文本的结合，但必须全文编译后才能看到结果，不如R Markdown方便，可以在中间过程运行R代码块，随时查看部分计算结果。
+
+总之，R Markdown简单易学，是做学习笔记、科学研究、撰写论文和书籍的好工具，值得花时间掌握。
+
+# 参考文献{-}
