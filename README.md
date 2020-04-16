@@ -1,2 +1,2 @@
 # Feiblog
-My blog using blogdown: https://fionawang.netlify.com/
+My blog using blogdown: https://fionawang.rbind.io/
